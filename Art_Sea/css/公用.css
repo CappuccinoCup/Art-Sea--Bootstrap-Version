@@ -1,0 +1,115 @@
+/* 消除bootstrap3动态模态框抖动 */
+body{ 
+    overflow: auto !important;
+    margin-right: 0 !important;
+} 
+.modal{ 
+    overflow: auto !important;
+}
+
+
+/* 自定义导航栏 */
+nav.self-nav{
+    color:rgba(255,255,255,0.7);
+    font-size: 15px;
+    background-color:rgba(0,0,0,0.39);/*背景透明，文字不受影响*/
+    width:  100%;
+    height: 50px;
+    top:0;
+    left:0;
+    position: fixed;
+    z-index: 10;/*使导航栏总是位于最顶层*/
+}
+nav .self-brand{
+    font-size: 39px;
+    text-decoration: none;
+}
+nav .self-linkGroup a{
+    display: inline-block;
+    text-decoration: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 17px;
+    padding: 13px 20px 12px 20px;
+    transition: all 0.5s;
+}
+nav .self-linkGroup a:hover{
+    background-color: black;
+}
+nav .self-linkGroup .currentPage{
+    color: #428bca;
+    pointer-events: none;
+}
+
+
+/* 登录与注册界面 */
+#signIn .form-group label,#signUp .form-group label{
+    margin: 6px auto 0 auto;
+    text-align: center;
+}
+
+#signIn .form-group p,#signUp .form-group p{
+    margin: 10px auto 0 auto;
+}
+
+#signIn p,#signUp p{
+    color:red;
+}
+
+/* 图片可点击 */
+img.artWorks{
+    cursor: pointer;
+}
+
+
+/* 隐藏查看详情表单的输入框 */
+input.invisibleInput{
+    display: none;
+}
+/* 隐藏首页热门图片信息 */
+p.invisibleP{
+    display: none;
+}
+
+
+/* 搜索结果图片大小 */
+.thumbnail.result img{
+    width: 270px;
+    height: 270px;    
+}
+.thumbnail.result .container,.thumbnail.result .container .col-md-6{
+    padding: 0;
+}
+.thumbnail.result .price{
+    margin: 5px 0 0 0;
+    font-size: 17px;
+}
+
+/* 高亮 */
+.highLight{
+    font-weight: bold;
+    color: #428bca;
+}
+
+/* 足迹 */
+#footPath a{
+    color: black;
+}
+#footPath .currentPage{
+    pointer-events: none;
+    color: #428bca;
+}
+
+/* 微调small元素 */
+.logoRow h1 small{
+    font-size: 15px;
+}
+
+/* 通用页脚 */
+footer{
+    background-color: black;
+    color: rgba(255, 255, 255, 0.7);
+}
+footer p{
+    text-align: center;
+    margin-top: 10px;
+}

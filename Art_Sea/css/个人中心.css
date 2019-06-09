@@ -1,0 +1,12 @@
+#personalInfo{
+    margin-bottom: 25px;
+}
+#personalInfo button.btn.btn-link{
+    padding: 0;
+}
+#personalInfo .myWorks td p{
+    margin: 10px 0 0 0;
+}
+#personalInfo .soldWorks td a{
+    cursor: pointer;
+}
