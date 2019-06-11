@@ -109,12 +109,12 @@ function showSearchResult()
                     $str .= '<h4>' . $searchResult[3 * $j + $i - 4]['title'] . '</h4>';
                     $str .= '<div class="container"><div class="col-md-6"><div class="pull-left">';
                     $str .= '<p>' . $searchResult[3 * $j + $i - 4]['artist'] . '</p>';
-                    $str .= '</div></div><div class="col-md-6"><div class="pull-right"><p class="highLight">点击量：' . $searchResult[3 * $j + $i - 4]['view'] . '</p></div></div></div>';
+                    $str .= '</div></div><div class="col-md-6"><div class="pull-right"><p class="highLight">View：' . $searchResult[3 * $j + $i - 4]['view'] . '</p></div></div></div>';
                     $str .= '<p>' . $searchResultDes[3 * $j + $i - 4] . '...</p>';
-                    $str .= '<div class="container"><div class="col-md-6"><p class="price highLight">价格：$' . $searchResult[3 * $j + $i - 4]['price'] . '</p></div>';
+                    $str .= '<div class="container"><div class="col-md-6"><p class="price highLight">Price：$' . $searchResult[3 * $j + $i - 4]['price'] . '</p></div>';
                     $str .= '<div class="col-md-6"><form action="详情.php" method="GET" target="_blank">';
                     $str .= '<input type="text" class="invisibleInput" name="workID" id="workID" value="' . $searchResult[3 * $j + $i - 4]['artworkID'] . '">';
-                    $str .= '<button class="btn btn-default pull-right" type="submit"><a><span class="glyphicon glyphicon-chevron-right"></span> 查看详情</a></button>';
+                    $str .= '<button class="btn btn-default pull-right" type="submit"><a><span class="glyphicon glyphicon-chevron-right"></span> Details</a></button>';
                     $str .= '</form></div></div></div></div></div>';
                 }
                 $str .= '</div>';

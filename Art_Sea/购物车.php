@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>购物车</title>
+    <title>shopping Cart</title>
     <!-- Bootstrap核心css文件 -->
     <link href="bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
     <!-- 其它css样式 -->
@@ -22,7 +22,7 @@
         ?>
         <div class="jumbotron">
             <div class="container">
-                <p class="text-center">用户已登出，请前往<a href="首页.php">首页</a>登录！</p>
+                <p class="text-center">The user has signed out.Please go to <a href="首页.php">Home Page</a> and sign in.</p>
             </div>
         </div>
     <?php
@@ -32,7 +32,7 @@
 
         <main class="shoppingCart">
             <div class="container">
-                <h2 class="highLight">购物车</h2>
+                <h2 class="highLight">Shopping Cart</h2>
                 <hr class="featurette-divider">
                 <div class="panel panel-info">
                     <div class="panel-heading">

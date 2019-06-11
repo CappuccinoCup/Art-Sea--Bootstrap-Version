@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>详情</title>
+    <title>Details</title>
     <!-- Bootstrap核心css文件 -->
     <link href="bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
     <!-- 其它css样式 -->
@@ -29,7 +29,7 @@
         ?>
         <div class="jumbotron">
             <div class="container">
-                <p class="text-center">(*^_^*) 年轻人有想法是好事</p>
+                <p class="text-center">(*^_^*) It's good for young people to have ideas</p>
             </div>
         </div>
     <?php
@@ -42,7 +42,7 @@
         ?>
             <div class="jumbotron">
                 <div class="container">
-                    <p class="text-center">ԅ(¯﹃¯ԅ) 您搜索的商品不存在</p>
+                    <p class="text-center">ԅ(¯﹃¯ԅ) The artwork you are searching for does not exist</p>
                 </div>
             </div>
         <?php
@@ -75,10 +75,10 @@
                                         <p class="highLight">$<?php echo $row['price']; ?></p>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-default">
-                                                <a href="#"><span class="glyphicon glyphicon-usd"></span> 立即购买</a>
+                                                <a href="#"><span class="glyphicon glyphicon-usd"></span> Purchase</a>
                                             </button>
                                             <button type="button" class="btn btn-default">
-                                                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> 加入购物车</a>
+                                                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
                                             </button>
                                         </div>
                                         <p>&nbsp;</p>
@@ -125,10 +125,10 @@
                                         <p class="highLight">$<?php echo $row['price']; ?></p>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-default">
-                                                <a href="#"><span class="glyphicon glyphicon-usd"></span> 立即购买</a>
+                                                <a href="#"><span class="glyphicon glyphicon-usd"></span> Purchase</a>
                                             </button>
                                             <button type="button" class="btn btn-default">
-                                                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> 加入购物车</a>
+                                                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
                                             </button>
                                         </div>
                                         <p>&nbsp;</p>
@@ -160,7 +160,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="panel panel-info">
-                                <h3 class="panel-heading">热门艺术家</h3>
+                                <h3 class="panel-heading">Famous Artists</h3>
                                 <ul class="panel-body list-group">
                                     <li class="list-group-item"><a href="搜索.php?search=Michelangelo&searchBy%5B%5D=artist">Michelangelo</a></li>
                                     <li class="list-group-item"><a href="搜索.php?search=Picasso&searchBy%5B%5D=artist">Picasso</a></li>
@@ -169,7 +169,7 @@
                                 </ul>
                             </div>
                             <div class="panel panel-info">
-                                <h3 class="panel-heading">热门作品</h3>
+                                <h3 class="panel-heading">Popular Artworks</h3>
                                 <ul class="panel-body list-group">
                                     <li class="list-group-item"><a href="详情.php?workID=392">The Creation of Adam</a></li>
                                     <li class="list-group-item"><a href="详情.php?workID=174">Guernica</a></li>

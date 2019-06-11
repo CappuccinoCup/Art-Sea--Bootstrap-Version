@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -63,8 +63,8 @@
                     <?php
                     if (!isset($_SESSION['admin']) || $_SESSION['admin'] === FALSE) {
                         ?>
-                        <a href="#" data-toggle="modal" data-target="#signIn">Sign In</a>
-                        <a href="#" data-toggle="modal" data-target="#signUp">Sign Up</a>
+                        <a href="#" data-toggle="modal" data-target="#signIn">Sign in</a>
+                        <a href="#" data-toggle="modal" data-target="#signUp">Sign up</a>
                     <?php
                 } else {
                     ?>

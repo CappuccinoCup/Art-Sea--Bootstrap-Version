@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>搜索</title>
+    <title>Search</title>
     <!-- Bootstrap核心css文件 -->
     <link href="bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
     <!-- 其它css样式 -->
@@ -37,7 +37,7 @@
                         <div class="col-md-1 col-md-offset-3"><label for="searchWorks" class="control-label pull-right">Search</label></div>
                         <div class="col-md-4"><input type="text" class="form-control" id="search" name="search"<?php if(isset($_GET['search'])){echo ' value="'.$_GET['search'].'"';} ?>>
                         </div>
-                        <div class="col-md-1"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> 搜索</button></div>
+                        <div class="col-md-1"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button></div>
                     </div>
                 </div>
                 <div class="row">
@@ -45,13 +45,13 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" name="searchBy[]" value="title"> 搜索作品
+                                    <input type="checkbox" name="searchBy[]" value="title"> artworks
                                 </label>
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" name="searchBy[]" value="artist"> 搜索艺术家
+                                    <input type="checkbox" name="searchBy[]" value="artist"> artists
                                 </label>
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" name="searchBy[]" value="description"> 搜索简介
+                                    <input type="checkbox" name="searchBy[]" value="description"> descriptions
                                 </label>
                             </div>
                         </div>
@@ -66,18 +66,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2 col-md-offset-1">
-                    <h3>搜索结果</h3>
+                    <h3>Search Results</h3>
                 </div>
                 <div class="col-md-8">
                     <div id="rank" class="pull-right">
                         <label class="radio-inline">
-                            <input type="radio" name="rankBy" id="rankBy1" value="priceDown" checked> 价格降序
+                            <input type="radio" name="rankBy" id="rankBy1" value="priceDown" checked> price DESC
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="rankBy" id="rankBy2" value="priceUp"> 价格升序
+                            <input type="radio" name="rankBy" id="rankBy2" value="priceUp"> price ASC
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="rankBy" id="rankBy3" value="hot"> 点击量
+                            <input type="radio" name="rankBy" id="rankBy3" value="hot"> view
                         </label>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                         ?>
                         <div class="jumbotron">
                             <div class="container">
-                                <p class="text-center">=￣ω￣= 您好像没有搜索任何作品哦</p>
+                                <p class="text-center">=￣ω￣= You don't seem to have searched for anything</p>
                             </div>
                         </div>
                     <?php
