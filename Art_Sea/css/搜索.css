@@ -21,3 +21,10 @@
 .hotWorks{
     margin-bottom: 25px;
 }
+
+.jumbotron {
+    margin-top: 30px;
+}
+.jumbotron .container p.text-center{
+    padding: 100px 0;
+}

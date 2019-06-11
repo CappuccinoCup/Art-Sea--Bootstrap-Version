@@ -112,7 +112,7 @@ function checkSignIn(){
     }
     var signInUsername = document.getElementById("signInUsername").value;
     var signInPassword = document.getElementById("signInPassword").value;
-    xmlhttp.open("POST","登录.php?signInUsername=" + signInUsername + "&signInPassword=" + signInPassword,true);
+    xmlhttp.open("POST","./php/登录.php?signInUsername=" + signInUsername + "&signInPassword=" + signInPassword,true);
     xmlhttp.send();
 }
 
@@ -139,7 +139,7 @@ function checkSignUp(){
     var signUpAddress = document.getElementById("signUpAddress").value;
 
 
-    xmlhttp.open("POST","注册.php?signUpUsername=" + signUpUsername + "&signUpEmail=" + signUpEmail
+    xmlhttp.open("POST","./php/注册.php?signUpUsername=" + signUpUsername + "&signUpEmail=" + signUpEmail
      + "&signUpPassword=" + signUpPassword + "&signUpTel=" + signUpTel + "&signUpAddress=" + signUpAddress,true);
     xmlhttp.send();
 }

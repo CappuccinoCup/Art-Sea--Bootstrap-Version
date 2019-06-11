@@ -70,12 +70,6 @@ p.invisibleP{
     display: none;
 }
 
-
-/* 搜索结果图片大小 */
-.thumbnail.result img{
-    width: 270px;
-    height: 270px;    
-}
 .thumbnail.result .container,.thumbnail.result .container .col-md-6{
     padding: 0;
 }
