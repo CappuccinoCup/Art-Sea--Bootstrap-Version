@@ -108,6 +108,7 @@ function search()
             showSearchResult($searchResult,$searchResultDes,count($searchResult));
         }
     }
+    $connect->close();
 }
 /* 展示搜索结果 */
 function showSearchResult($searchResult,$searchResultDes,$n)
