@@ -95,7 +95,7 @@
                         </div>
                     <?php
                 } else {
-                    showSearchResult();
+                    search();
                 } ?>
 
                 </div>
