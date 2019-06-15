@@ -93,7 +93,7 @@ function search()
             $sql = substr($sql, 0, strlen($sql) - 1);
         }
         $sql .= "ORDER BY price DESC";
-        echo $sql;
+        //echo $sql;
 
         $result = $connect->query($sql);
         if ($result->num_rows <= 0) {
