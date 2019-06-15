@@ -66,13 +66,21 @@ function search()
     $keyWords = array_filter($_keyWords);
     //获得搜索选项
     $options = array("title");
-    if (isset($_GET['searchBy'])) {
-        $options = $_GET['searchBy'];
+    $isOption = TRUE;
+    if (isset($_GET['searchBy']) && is_array($_GET['searchBy'])) {
+        foreach (($_GET['searchBy']) as $option) {
+            if ($option !== "title" && $option !== "artist" && $option !== "description") {
+                $isOption = FALSE;
+            }
+        }
+        if($isOption){
+            $options = $_GET['searchBy'];
+        }
     }
 
     if ($keyWords == null) {
         //如果关键词为空
-        echo '<div class="jumbotron"><div class="container"><p class="text-center">(⊙ˍ⊙)? 没有任何搜索结果哦</p></div></div>';
+        echo '<div class="jumbotron"><div class="container"><p class="text-center">(⊙ˍ⊙)? no searching result</p></div></div>';
     } else {
         //生成$sql字符串
         $sql = "";
@@ -85,11 +93,11 @@ function search()
             $sql = substr($sql, 0, strlen($sql) - 1);
         }
         $sql .= "ORDER BY price DESC";
-        //echo $sql;
+        echo $sql;
 
         $result = $connect->query($sql);
         if ($result->num_rows <= 0) {
-            echo '<div class="jumbotron"><div class="container"><p class="text-center">(⊙ˍ⊙)? 没有任何搜索结果哦</p></div></div>';
+            echo '<div class="jumbotron"><div class="container"><p class="text-center">(⊙ˍ⊙)? no searching result</p></div></div>';
         } else {
             //输出结果
             for ($i = 0; $row = $result->fetch_assoc(); $i++) {
@@ -102,16 +110,16 @@ function search()
             //根据分页情况裁剪数组
             //如果 page = 1 ,裁剪下标为 0-5 的元素；如果 page = 2 ,裁剪下标为 6-11 的元素
             //根据搜索的结果设置 maxpage ,如果 page > maxpage ,返回 page = maxpage 的结果 
-            
+
 
             //设置$n为所有结果的大小，输出所有结果
-            showSearchResult($searchResult,$searchResultDes,count($searchResult));
+            showSearchResult($searchResult, $searchResultDes, count($searchResult));
         }
     }
     $connect->close();
 }
 /* 展示搜索结果 */
-function showSearchResult($searchResult,$searchResultDes,$n)
+function showSearchResult($searchResult, $searchResultDes, $n)
 {
     $nx = ($n % 3 === 0) ? $n / 3 : (int)($n / 3) + 1;
     for ($i = 1; $i <= 3; $i++) {
