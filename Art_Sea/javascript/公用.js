@@ -112,8 +112,9 @@ function checkSignIn(){
     }
     var signInUsername = document.getElementById("signInUsername").value;
     var signInPassword = document.getElementById("signInPassword").value;
-    xmlhttp.open("POST","./php/登录.php?signInUsername=" + signInUsername + "&signInPassword=" + signInPassword,true);
-    xmlhttp.send();
+    xmlhttp.open("POST","./php/登录.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("signInUsername=" + signInUsername + "&signInPassword=" + signInPassword);
 }
 
 /* 注册时服务器端检测by Ajax */
@@ -139,7 +140,8 @@ function checkSignUp(){
     var signUpAddress = document.getElementById("signUpAddress").value;
 
 
-    xmlhttp.open("POST","./php/注册.php?signUpUsername=" + signUpUsername + "&signUpEmail=" + signUpEmail
-     + "&signUpPassword=" + signUpPassword + "&signUpTel=" + signUpTel + "&signUpAddress=" + signUpAddress,true);
-    xmlhttp.send();
+    xmlhttp.open("POST","./php/注册.php",true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("signUpUsername=" + signUpUsername + "&signUpEmail=" + signUpEmail
+    + "&signUpPassword=" + signUpPassword + "&signUpTel=" + signUpTel + "&signUpAddress=" + signUpAddress);
 }

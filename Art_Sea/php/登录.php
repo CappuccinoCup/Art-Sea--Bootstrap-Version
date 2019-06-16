@@ -11,11 +11,11 @@ if ($connect->connect_error) {
     die("连接失败: " . $connect->connect_error . "<br>");
 }
 
-$sql = "SELECT name,password FROM users WHERE name='" . $_GET['signInUsername'] . "'";
+$sql = "SELECT name,password FROM users WHERE name='" . $_POST['signInUsername'] . "'";
 $result = $connect->query($sql);
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    if ($row['password'] === $_GET['signInPassword']) {
+    if ($row['password'] === $_POST['signInPassword']) {
         $_SESSION['admin'] = TRUE;
         $_SESSION['name'] = $row['name'];
         echo "success";
