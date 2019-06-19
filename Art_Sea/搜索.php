@@ -29,6 +29,8 @@
 
     <?php include('php/header_search.php'); ?>
 
+    <?php $options = getSearchOptions(); ?>
+
     <section class="searchRow">
         <div class="container">
             <form class="form-horizontal" id="formOfSearch" action="搜索.php" method="GET" autocomplete="off">
@@ -45,13 +47,13 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" name="searchBy[]" value="title"> artworks
+                                    <input type="checkbox" name="searchBy[]" value="title"<?php if(in_array("title",$options)){echo ' checked';} ?>> artworks
                                 </label>
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" name="searchBy[]" value="artist"> artists
+                                    <input type="checkbox" name="searchBy[]" value="artist"<?php if(in_array("artist",$options)){echo ' checked';} ?>> artists
                                 </label>
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" name="searchBy[]" value="description"> descriptions
+                                    <input type="checkbox" name="searchBy[]" value="description"<?php if(in_array("description",$options)){echo ' checked';} ?>> descriptions
                                 </label>
                             </div>
                         </div>
@@ -68,22 +70,27 @@
                 <div class="col-md-2 col-md-offset-1">
                     <h3>Search Results</h3>
                 </div>
+                <?php 
+                if(isset($_GET['search'])){
+                    ?>
                 <div class="col-md-8">
                     <div id="rank" class="pull-right">
                         <label class="radio-inline">
-                            <input type="radio" name="rankBy" id="rankBy1" value="priceDown" checked> price DESC
+                            <input type="radio" name="rankBy" id="rankBy1" value="price DESC" onclick="rank(this.value);" checked> price DESC
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="rankBy" id="rankBy2" value="priceUp"> price ASC
+                            <input type="radio" name="rankBy" id="rankBy2" value="price ASC" onclick="rank(this.value);"> price ASC
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="rankBy" id="rankBy3" value="hot"> view
+                            <input type="radio" name="rankBy" id="rankBy3" value="view DESC" onclick="rank(this.value);"> view
                         </label>
                     </div>
                 </div>
+                <?php
+                } ?>
             </div>
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-10 col-md-offset-1" id="searchResult">
                     <!-- 搜索结果 -->
                     <?php
                     if (!isset($_GET['search'])) {
@@ -95,7 +102,7 @@
                         </div>
                     <?php
                 } else {
-                    search();
+                    search("price DESC");
                 } ?>
 
                 </div>

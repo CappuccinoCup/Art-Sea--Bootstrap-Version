@@ -58,25 +58,14 @@ function showNewWork($new, $newDes, $n)
 
 
 /* 搜索 */
-function search()
+function search($rank)
 {
     $connect = connectDB();
     //获得关键词
     $_keyWords = explode(" ", $_GET['search']);
     $keyWords = array_filter($_keyWords);
     //获得搜索选项
-    $options = array("title");
-    $isOption = TRUE;
-    if (isset($_GET['searchBy']) && is_array($_GET['searchBy'])) {
-        foreach (($_GET['searchBy']) as $option) {
-            if ($option !== "title" && $option !== "artist" && $option !== "description") {
-                $isOption = FALSE;
-            }
-        }
-        if($isOption){
-            $options = $_GET['searchBy'];
-        }
-    }
+    $options = getSearchOptions();
 
     if ($keyWords == null) {
         //如果关键词为空
@@ -92,7 +81,7 @@ function search()
         for ($i = 0; $i < 6; $i++) {
             $sql = substr($sql, 0, strlen($sql) - 1);
         }
-        $sql .= "ORDER BY price DESC";
+        $sql .= "ORDER BY " . $rank;
         //echo $sql;
 
         $result = $connect->query($sql);
@@ -117,6 +106,22 @@ function search()
         }
     }
     $connect->close();
+}
+/* 获得搜索选项 */
+function getSearchOptions(){
+    $options = array("title");
+    $isOption = TRUE;
+    if (isset($_GET['searchBy']) && is_array($_GET['searchBy'])) {
+        foreach (($_GET['searchBy']) as $option) {
+            if ($option !== "title" && $option !== "artist" && $option !== "description") {
+                $isOption = FALSE;
+            }
+        }
+        if($isOption){
+            $options = $_GET['searchBy'];
+        }
+    }
+    return $options;
 }
 /* 展示搜索结果 */
 function showSearchResult($searchResult, $searchResultDes, $n)

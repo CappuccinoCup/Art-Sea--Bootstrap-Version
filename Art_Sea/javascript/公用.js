@@ -145,3 +145,30 @@ function checkSignUp(){
     xmlhttp.send("signUpUsername=" + signUpUsername + "&signUpEmail=" + signUpEmail
     + "&signUpPassword=" + signUpPassword + "&signUpTel=" + signUpTel + "&signUpAddress=" + signUpAddress);
 }
+
+/* 排序 */
+function rank(rankBy){
+    var xmlhttp;
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){
+    if (xmlhttp.readyState==4 && xmlhttp.status==200){
+        document.getElementById("searchResult").innerHTML = xmlhttp.responseText;
+    }
+    }
+
+    var search = document.getElementById("search").value;
+    var searchBy = [];
+    var checkBox = document.getElementsByName("searchBy[]");
+    for(var i = 0;i < checkBox.length;i++){
+        if(checkBox[i].checked == true){
+            searchBy[searchBy.length] = checkBox[i].value;
+        }
+    }
+    var url = "./php/搜索.php?search=" + search + "&rankBy=" + rankBy;
+    for(var i = 0;i < searchBy.length;i++){
+        url += "&searchBy[]=" + searchBy[i];
+    }
+
+    xmlhttp.open("GET",url,true);
+    xmlhttp.send();
+}
