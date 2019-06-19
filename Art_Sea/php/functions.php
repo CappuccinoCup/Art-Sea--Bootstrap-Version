@@ -58,7 +58,7 @@ function showNewWork($new, $newDes, $n)
 
 
 /* 搜索 */
-function search($rank)
+function search($rank,$page)
 {
     $connect = connectDB();
     //获得关键词
@@ -98,8 +98,7 @@ function search($rank)
             }
             //根据分页情况裁剪数组
             //如果 page = 1 ,裁剪下标为 0-5 的元素；如果 page = 2 ,裁剪下标为 6-11 的元素
-            //根据搜索的结果设置 maxpage ,如果 page > maxpage ,返回 page = maxpage 的结果 
-
+            
 
             //设置$n为所有结果的大小，输出所有结果
             showSearchResult($searchResult, $searchResultDes, count($searchResult));

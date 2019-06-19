@@ -102,9 +102,8 @@
                         </div>
                     <?php
                 } else {
-                    search("price DESC");
+                    search("price DESC",1);
                 } ?>
-
                 </div>
             </div>
             <hr class="featurette-divider">

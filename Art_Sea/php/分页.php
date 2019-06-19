@@ -2,5 +2,6 @@
 include("functions.php");
 
 $rank = $_GET['rankBy'];
-search($rank);
+$page = $_GET['page'];
+search($rank,$page);
 ?>
