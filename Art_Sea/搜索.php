@@ -68,7 +68,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2 col-md-offset-1">
-                    <h3>Search Results</h3>
+                    <h3><a name="results">Search Results</a></h3>
                 </div>
                 <?php 
                 if(isset($_GET['search'])){

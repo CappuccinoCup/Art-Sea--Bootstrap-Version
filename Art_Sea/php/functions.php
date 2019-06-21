@@ -98,10 +98,19 @@ function search($rank,$page)
             }
             //根据分页情况裁剪数组
             //如果 page = 1 ,裁剪下标为 0-5 的元素；如果 page = 2 ,裁剪下标为 6-11 的元素
-            
+            $numberOfPage = (count($searchResult) % 6 === 0) ? count($searchResult) / 6 : (int)(count($searchResult) / 6) + 1;
+            if($page < 1 || $page > $numberOfPage){$page=1;}
+            $currentPageResult = array();
+            $currentPageDes = array();
+            for($i = ($page - 1) * 6;$i < $page * 6 && $i < count($searchResult);$i++){
+                $currentPageResult[count($currentPageResult)] = $searchResult[$i];
+                $currentPageDes[count($currentPageDes)] = $searchResultDes[$i];
+            }
 
             //设置$n为所有结果的大小，输出所有结果
-            showSearchResult($searchResult, $searchResultDes, count($searchResult));
+            showSearchResult($currentPageResult, $currentPageDes, count($currentPageResult));
+            //生成分页按钮
+            showChangePageBtn($numberOfPage,$page);
         }
     }
     $connect->close();
@@ -126,6 +135,7 @@ function getSearchOptions(){
 function showSearchResult($searchResult, $searchResultDes, $n)
 {
     $nx = ($n % 3 === 0) ? $n / 3 : (int)($n / 3) + 1;
+    echo '<div class="row">';
     for ($i = 1; $i <= 3; $i++) {
         $str = '<div class="col-md-4">';
         for ($j = 1; $j <= $nx && (3 * $j + $i - 3) <= $n; $j++) {
@@ -145,4 +155,19 @@ function showSearchResult($searchResult, $searchResultDes, $n)
         $str .= '</div>';
         echo $str;
     }
+    echo '</div>';
+}
+/* 生成分页按钮 */
+function showChangePageBtn($numberOfPage,$page){
+    $str = '<div class="row"><nav aria-label="Page navigation" class="text-center"><ul class="pagination" id="changePageBtn">';
+    for($i = 1;$i <= $numberOfPage;$i++){
+        if($i === $page){
+            $str .= '<li class="active"><a href="#results" onclick="changePage(' . $i . ')">' . $i . '</a></li>';
+        }
+        else{
+            $str .= '<li><a href="#results" onclick="changePage(' . $i . ')">' . $i . '</a></li>';
+        }
+    }
+    $str .= '</ul></nav></div>';
+    echo $str;
 }

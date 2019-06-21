@@ -28,3 +28,9 @@
 .jumbotron .container p.text-center{
     padding: 100px 0;
 }
+
+/* 锚 */
+a[name="results"]:hover{
+    text-decoration: none;
+    color: #428bca;
+}
