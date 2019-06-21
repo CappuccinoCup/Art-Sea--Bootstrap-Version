@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shopping Cart</title>
+    <title>Shopping Cart</title>
     <!-- Bootstrap核心css文件 -->
     <link href="bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
     <!-- 其它css样式 -->
@@ -16,8 +16,11 @@
 </head>
 
 <body>
+    <?php include('php/functions.php'); ?>
+
     <?php
     session_start();
+    saveFootprint("Shopping Cart",'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     if (!isset($_SESSION['admin']) || $_SESSION['admin'] === FALSE) {
         ?>
         <div class="jumbotron">

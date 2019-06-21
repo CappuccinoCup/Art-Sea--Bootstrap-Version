@@ -40,10 +40,8 @@
                     </form>
                 </div>
             </div>
-            <div id="footPath"><span class="glyphicon glyphicon-time"></span> 您的足迹：
-                <a href="首页.html">首页 </a>
-                <span class="glyphicon glyphicon-arrow-right"></span>
-                <a href="详情.html" class="currentPage">详情 </a>
+            <div id="footPath"><span class="glyphicon glyphicon-time"></span> Your FootPrint:
+            <?php showFootprint(); ?>
             </div>
         </div>
         <hr class="featurette-divider">

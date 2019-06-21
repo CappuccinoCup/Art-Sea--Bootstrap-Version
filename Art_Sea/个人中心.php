@@ -20,6 +20,7 @@
 
     <?php
     session_start();
+    saveFootprint("Personal Center",'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     if (!isset($_SESSION['admin']) || $_SESSION['admin'] === FALSE) {
         ?>
         <div class="jumbotron">

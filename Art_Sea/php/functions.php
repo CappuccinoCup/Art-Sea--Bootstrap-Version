@@ -15,6 +15,45 @@ function connectDB()
     return $connect;
 }
 
+/* 记录足迹 */
+function saveFootprint($pageName,$pageUrl){
+    if(!isset($_SESSION['footprint'])){$_SESSION['footprint'] = array(array($pageName,$pageUrl));}
+    $footprint = $_SESSION['footprint'];
+    $footprintLength = count($footprint);
+    //检查是否有重复足迹
+    $isExist = FALSE;
+    for($i = 0;$i < $footprintLength;$i++){
+        if($footprint[$i][0] === $pageName){
+            $lastIndex = $i;
+            $isExist = TRUE;
+            break;
+        }
+    }
+    //调整足迹
+    if($isExist){
+        for($i = 0;$i < $footprintLength - $lastIndex - 1;$i++){
+            array_pop($footprint);
+        }
+        $footprint[$lastIndex] = array($pageName,$pageUrl);
+    }else{
+        array_push($footprint,array($pageName,$pageUrl));
+    }
+    $_SESSION['footprint'] = $footprint;
+}
+/* 输出足迹 */
+function showFootprint(){
+    if(isset($_SESSION['footprint'])){
+        $footprint = $_SESSION['footprint'];
+        $str ="";
+        for($i = 0;$i < count($footprint) - 1;$i++){
+            $str .= '<a href="' . $footprint[$i][1] . '">' . $footprint[$i][0] . ' </a>';
+            $str .= '<span class="glyphicon glyphicon-arrow-right"></span>';
+        }
+        $str .= '<a href="' . $footprint[count($footprint) - 1][1] . '" class="currentPage">' . $footprint[count($footprint) - 1][0] . ' </a>';
+        echo $str;
+    }
+}
+
 /*输出热门艺术品的信息*/
 function showHotWorkInfo($hot, $hotDes, $n)
 {

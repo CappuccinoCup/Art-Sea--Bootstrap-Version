@@ -25,6 +25,7 @@
     <?php include('php/functions.php'); ?>
     <?php
     session_start();
+    saveFootprint("Home",'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     $connect = connectDB();
     //获取热门作品前三
     $sql = "SELECT artworkID,artist,imageFileName,title,description FROM artworks ORDER BY view DESC LIMIT 0,3";

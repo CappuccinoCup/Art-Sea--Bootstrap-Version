@@ -23,7 +23,10 @@
 <body>
     <?php include('php/functions.php'); ?>
 
-    <?php session_start(); ?>
+    <?php 
+    session_start(); 
+    saveFootprint("Search",'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    ?>
 
     <?php include('php/modal.php'); ?>
 

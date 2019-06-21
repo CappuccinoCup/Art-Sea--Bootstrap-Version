@@ -25,6 +25,7 @@
 
     <?php
     session_start();
+    saveFootprint("Details",'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     if (!isset($_GET['workID'])) {
         ?>
         <div class="jumbotron">

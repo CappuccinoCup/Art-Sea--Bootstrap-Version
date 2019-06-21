@@ -28,10 +28,8 @@
         </nav>
         <div class="logoRow">
             <h1><strong>Art Sea </strong><small>swim in the sea of masterpieces</small></h1>
-            <div id="footPath"><span class="glyphicon glyphicon-time"></span> 您的足迹：
-                <a href="首页.html">首页 </a>
-                <span class="glyphicon glyphicon-arrow-right"></span>
-                <a href="搜索.html" class="currentPage">搜索 </a>
+            <div id="footPath"><span class="glyphicon glyphicon-time"></span> Your Footprint:
+            <?php showFootprint(); ?>
             </div>
         </div>
         <hr class="featurette-divider">
