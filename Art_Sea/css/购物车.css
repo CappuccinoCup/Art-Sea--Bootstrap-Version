@@ -5,6 +5,9 @@
 .shoppingCart .purchase{
     width: 60%;
 }
+.shoppingCart .panel.panel-info{
+    margin: 30px 0;
+}
 .shoppingCart .panel .panel-body .highLight{
     font-size: 17px;
     margin: 7px 0 0 0;
@@ -17,4 +20,8 @@
 
 #cartWorks .btn-group{
     margin-top: 160px;
+}
+
+#cartWorks .btn-group button a{
+    color: black;
 }

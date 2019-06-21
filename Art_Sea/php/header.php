@@ -1,3 +1,4 @@
+<?php $artworkID = getShoppingCartArtworks(); ?>
 <header>
     <div class="container">
         <nav class="navbar navbar-inverse">
@@ -10,7 +11,7 @@
                         <li><a href="首页.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                         <li><a href="搜索.php"><span class="glyphicon glyphicon-search"></span> Search</a></li>
                         <li><a href="个人中心.php"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['name']; ?></a></li>
-                        <li><a href="购物车.php" data-toggle="popover" data-placement="bottom" title="<?php echo $_SESSION['name']; ?>'sShoppingCart" data-content="商品1名称&lt;br&gt;商品1价格&lt;br&gt;商品2名称&lt;br&gt;商品2价格"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
+                        <li><a href="购物车.php" data-toggle="popover" data-placement="bottom" title="<?php echo $_SESSION['name']; ?>'sShoppingCart" data-content="<?php littleShoppingCart($artworkID); ?>"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
                         <li><a href="./php/登出.php"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
                     </ul>
                 </div>

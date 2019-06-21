@@ -73,15 +73,10 @@
                                         <p><?php echo $row['description']; ?></p>
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="highLight">$<?php echo $row['price']; ?></p>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default">
-                                                <a href="#"><span class="glyphicon glyphicon-usd"></span> Purchase</a>
-                                            </button>
-                                            <button type="button" class="btn btn-default">
-                                                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
-                                            </button>
-                                        </div>
+                                        <p class="highLight">$<?php echo $row['price']; ?></p>                                
+                                        <button type="button" class="btn btn-default">
+                                            <a onclick="addToShoppingCart(<?php echo $row['artworkID']; ?>);"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
+                                        </button>
                                         <p>&nbsp;</p>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">Product Details</div>
@@ -123,15 +118,10 @@
                                                             echo 5;
                                                         } ?>">
                                         <p><?php echo $row['description']; ?></p>
-                                        <p class="highLight">$<?php echo $row['price']; ?></p>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default">
-                                                <a href="#"><span class="glyphicon glyphicon-usd"></span> Purchase</a>
-                                            </button>
-                                            <button type="button" class="btn btn-default">
-                                                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
-                                            </button>
-                                        </div>
+                                        <p class="highLight">$<?php echo $row['price']; ?></p>                                        
+                                        <button type="button" class="btn btn-default">
+                                            <a onclick="addToShoppingCart(<?php echo $row['artworkID']; ?>);"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
+                                        </button>                                       
                                         <p>&nbsp;</p>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">Product Details</div>

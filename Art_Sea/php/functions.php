@@ -210,3 +210,90 @@ function showChangePageBtn($numberOfPage,$page){
     $str .= '</ul></nav></div>';
     echo $str;
 }
+
+/* 获得用户购物车商品 */
+function getShoppingCartArtworks(){
+    $connect = connectDB();
+    $sql = "SELECT artworkID FROM carts WHERE userID='" . $_SESSION['userID'] . "'";
+    $result = $connect->query($sql);
+    if ($result->num_rows <= 0){
+        $artworkID = NULL;
+    }else{
+        for($i = 0;$row = $result->fetch_assoc();$i++){
+            $artworkID[$i] = $row['artworkID'];
+        }
+    }
+    $connect->close();
+    return $artworkID;
+}
+/* 获得购物车商品信息 */
+function getShoppingCart($artworkID){
+    if($artworkID === NULL){
+        echo '<div class="jumbotron"><div class="container"><p class="text-center"><br><br><br>(⊙ˍ⊙)? no artwork in your shopping cart<br><br><br></p></div></div>';
+    }else{
+        $connect = connectDB();
+        $sum = 0;
+        for($i = 0;$i < count($artworkID);$i++){
+            $sql = "SELECT artworkID,title,artist,imageFileName,price,description FROM artworks WHERE artworkID='" . $artworkID[$i] . "'";
+            $result = $connect->query($sql);
+            if ($result->num_rows <= 0){
+                showShoppingCart(NULL);
+            }else{
+                $row = $result->fetch_assoc();
+                $sum += $row['price'];
+                showShoppingCart($row);
+            }
+        }
+        showPurchaseBtn($sum,$artworkID);
+        $connect->close();
+    }
+}
+/* 展示购物车内商品 */
+function showShoppingCart($row){
+    if($row === NULL){
+        echo '<div id="cartWorks" class="row">This artwork has disappeared</div>';
+    }else{
+        $rowDes = substr($row['description'], 0, 200);
+        $rowDes = preg_replace('/<em>/i','',$rowDes);
+        $rowDes = preg_replace('/<\/em>/i','',$rowDes);
+        $str = '<div id="cartWorks" class="row"><div class="col-md-3"><img src="resources/img/' . $row['imageFileName'] . '" class="cartImg pull-left"></div>';
+        $str .= '<div class="col-md-3"><div class="panel panel-info"><div class="panel-heading"><h4 class="panel-title">Artwork Infomation</h4></div>';
+        $str .= '<table class="table"><tr><td>title:</td><td>' . $row['title'] . '</td></tr>';
+        $str .= '<tr><td>artist:</td><td>' . $row['artist'] . '</td></tr>';
+        $str .= '<tr><td>price:</td><td>$' . $row['price'] . '</td></tr></table></div></div>';
+        $str .= '<div class="col-md-4"><div class="panel panel-info"><div class="panel-heading"><h4 class="panel-title">Artwork Description</h4></div>';
+        $str .= '<div class="panel-body">' . $rowDes . '...</div></div></div>';
+        $str .= '<div class="col-md-2"><div class="btn-group pull-right" role="group">';
+        $str .= '<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span><a href="详情.php?workID=' . $row['artworkID'] . '"> 详情</a></button>';
+        $str .= '<button type="button" class="btn btn-danger" onclick="deleteArtwork(' . $row['artworkID'] . ');"><span class="glyphicon glyphicon-trash"></span> 删除</button>';
+        $str .= '</div></div></div><hr class="featurette-divider">';
+        echo $str;
+    }
+}
+/* 展示总价和下单按钮 */
+function showPurchaseBtn($sum,$artworkID){
+    $str = '<div class="row"><div class="col-md-2 col-md-offset-8"><p class="highLight pull-right">Sum:$' . $sum . '</p>';
+    $str .= '</div><div class="col-md-2"><button type="button" class="btn btn-default purchase pull-right">';
+    $str .= '<span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;下单</button></div></div>';
+    echo $str;
+}
+
+/* 悬浮购物车 */
+function littleShoppingCart($artworkID){
+    if($artworkID === NULL){
+        echo 'No artworks in your cart';
+    }else{
+        $connect = connectDB();
+        for($i = 0;$i < count($artworkID);$i++){
+            $sql = "SELECT title,price FROM artworks WHERE artworkID='" . $artworkID[$i] . "'";
+            $result = $connect->query($sql);
+            if ($result->num_rows <= 0){
+                echo 'This artwork has disappeared';
+            }else{
+                $row = $result->fetch_assoc();
+                echo $row['title'] . '&lt;br&gt;$' . $row['price'] . '&lt;br&gt;';
+            }
+        }
+        $connect->close();
+    }
+}

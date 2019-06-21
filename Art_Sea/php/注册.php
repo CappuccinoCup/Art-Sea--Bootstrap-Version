@@ -1,15 +1,9 @@
 <?php
+include("functions.php");
+
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "11111111";
-$dbname = "art_sea";
-
-$connect = new mysqli($servername, $username, $password, $dbname);
-if ($connect->connect_error) {
-    die("连接失败: " . $connect->connect_error . "<br>");
-}
+$connect = connectDB();
 
 $sql = "SELECT name FROM users WHERE name='" . $_POST['signUpUsername'] . "'";
 $result = $connect->query($sql);

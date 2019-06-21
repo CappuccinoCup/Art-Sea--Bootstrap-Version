@@ -30,6 +30,7 @@
         </div>
     <?php
 } else {
+    $artworkID = getShoppingCartArtworks();
     ?>
         <?php include('php/header.php'); ?>
 
@@ -39,103 +40,10 @@
                 <hr class="featurette-divider">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">我的购物车</h3>
+                        <h3 class="panel-title">My Shopping Cart</h3>
                     </div>
                     <div class="panel-body container">
-                        <div id="cartWorks" class="row">
-                            <div class="col-md-3"><img src="073010.jpg" class="cartImg pull-left"></div>
-                            <div class="col-md-3">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">商品信息</h4>
-                                    </div>
-                                    <table class="table">
-                                        <tr>
-                                            <td>名称：</td>
-                                            <td>这里是艺术品名称</td>
-                                        </tr>
-                                        <tr>
-                                            <td>作家：</td>
-                                            <td>这里是作家名字</td>
-                                        </tr>
-                                        <tr>
-                                            <td>价格：</td>
-                                            <td>这里是艺术品价格</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">商品简介</h4>
-                                    </div>
-                                    <div class="panel-body">
-                                        这里是商品简介<br>这里是商品简介<br>这里是商品简介<br>这里是商品简介<br>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <form action="详情.html" method="GET" target="_blank">
-                                    <input type="text" class="invisibleInput" name="workID" id="workID" value="000001">
-                                    <div class="btn-group pull-right" role="group">
-                                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-chevron-right"></span> 详情</button>
-                                        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> 删除</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <hr class="featurette-divider">
-                        <div id="cartWorks" class="row">
-                            <div class="col-md-3"><img src="073010.jpg" class="cartImg pull-left"></div>
-                            <div class="col-md-3">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">商品信息</h4>
-                                    </div>
-                                    <table class="table">
-                                        <tr>
-                                            <td>名称：</td>
-                                            <td>这里是艺术品名称</td>
-                                        </tr>
-                                        <tr>
-                                            <td>作家：</td>
-                                            <td>这里是作家名字</td>
-                                        </tr>
-                                        <tr>
-                                            <td>价格：</td>
-                                            <td>这里是艺术品价格</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">商品简介</h4>
-                                    </div>
-                                    <div class="panel-body">
-                                        这里是商品简介<br>这里是商品简介<br>这里是商品简介<br>这里是商品简介<br>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <form action="详情.html" method="GET" target="_blank">
-                                    <input type="text" class="invisibleInput" name="workID" id="workID" value="000001">
-                                    <div class="btn-group pull-right" role="group">
-                                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-chevron-right"></span> 详情</button>
-                                        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> 删除</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <hr class="featurette-divider">
-                        <div class="row">
-                            <div class="col-md-2 col-md-offset-8">
-                                <p class="highLight pull-right">总计：$100000</p>
-                            </div>
-                            <div class="col-md-2"><button type="button" class="btn btn-default purchase pull-right"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;下单</button></div>
-                        </div>
+                        <?php getShoppingCart($artworkID); ?>
                     </div>
                 </div>
                 <hr class="featurette-divider">
