@@ -54,6 +54,7 @@ function showFootprint(){
     }
 }
 
+
 /*输出热门艺术品的信息*/
 function showHotWorkInfo($hot, $hotDes, $n)
 {
@@ -81,11 +82,11 @@ function showNewWork($new, $newDes, $n)
         $str = '<div class="col-md-4">';
         for ($j = 1; $j <= $nx && (3 * $j + $i - 3) <= $n; $j++) {
             $str .= '<div class="row"><div class="thumbnail">';
-            $str .= '<img src="resources/img/' . $new[3 * $j + $i - 4]['imageFileName'] . '" class="artWorks" alt="' . $new[3 * $j + $i - 4]['title'] . '" onclick="window.open(\'详情.php?workID=' . $new[3 * $j + $i - 4]['artworkID'] . '\');">';
+            $str .= '<img src="resources/img/' . $new[3 * $j + $i - 4]['imageFileName'] . '" class="artWorks" alt="' . $new[3 * $j + $i - 4]['title'] . '" onclick="window.open(\'详情.php?workID=' . $new[3 * $j + $i - 4]['artworkID'] . '\',\'_self\');">';
             $str .= '<div class="caption">';
             $str .= '<h3>' . $new[3 * $j + $i - 4]['title'] . '</h3>';
             $str .= '<p>' . $newDes[3 * $j + $i - 4] . '...</p>';
-            $str .= '<div class="container"><form action="详情.php" method="GET" target="_blank">';
+            $str .= '<div class="container"><form action="详情.php" method="GET">';
             $str .= '<input type="text" class="invisibleInput" name="workID" id="workID" value="' . $new[3 * $j + $i - 4]['artworkID'] . '">';
             $str .= '<button class="btn btn-default pull-right" type="submit"><a><span class="glyphicon glyphicon-chevron-right"></span> Details</a></button>';
             $str .= '</form></div></div></div></div>';
@@ -114,7 +115,7 @@ function search($rank,$page)
         $sql = "";
         for ($i = 0; $i < count($options); $i++) {
             foreach ($keyWords as $key) {
-                $sql .= "SELECT artworkID,artist,imageFileName,title,description,price,view FROM artworks WHERE " . $options[$i] . " LIKE '%" . $key . "%' UNION ";
+                $sql .= "SELECT artworkID,artist,imageFileName,title,description,price,view FROM artworks WHERE orderID is NULL AND " . $options[$i] . " LIKE '%" . $key . "%' UNION ";
             }
         }
         for ($i = 0; $i < 6; $i++) {
@@ -179,14 +180,14 @@ function showSearchResult($searchResult, $searchResultDes, $n)
         $str = '<div class="col-md-4">';
         for ($j = 1; $j <= $nx && (3 * $j + $i - 3) <= $n; $j++) {
             $str .= '<div class="row"><div class="thumbnail result">';
-            $str .= '<img src="resources/img/' . $searchResult[3 * $j + $i - 4]['imageFileName'] . '" class="artWorks" alt="' . $searchResult[3 * $j + $i - 4]['title'] . '" onclick="window.open(\'详情.php?workID=' . $searchResult[3 * $j + $i - 4]['artworkID'] . '\');"><div class="caption">';
+            $str .= '<img src="resources/img/' . $searchResult[3 * $j + $i - 4]['imageFileName'] . '" class="artWorks" alt="' . $searchResult[3 * $j + $i - 4]['title'] . '" onclick="window.open(\'详情.php?workID=' . $searchResult[3 * $j + $i - 4]['artworkID'] . '\',\'_self\');"><div class="caption">';
             $str .= '<h4>' . $searchResult[3 * $j + $i - 4]['title'] . '</h4>';
             $str .= '<div class="container"><div class="col-md-6"><div class="pull-left">';
             $str .= '<p>' . $searchResult[3 * $j + $i - 4]['artist'] . '</p>';
             $str .= '</div></div><div class="col-md-6"><div class="pull-right"><p class="highLight">View：' . $searchResult[3 * $j + $i - 4]['view'] . '</p></div></div></div>';
             $str .= '<p>' . $searchResultDes[3 * $j + $i - 4] . '...</p>';
             $str .= '<div class="container"><div class="col-md-6"><p class="price highLight">Price：$' . $searchResult[3 * $j + $i - 4]['price'] . '</p></div>';
-            $str .= '<div class="col-md-6"><form action="详情.php" method="GET" target="_blank">';
+            $str .= '<div class="col-md-6"><form action="详情.php" method="GET">';
             $str .= '<input type="text" class="invisibleInput" name="workID" id="workID" value="' . $searchResult[3 * $j + $i - 4]['artworkID'] . '">';
             $str .= '<button class="btn btn-default pull-right" type="submit"><a><span class="glyphicon glyphicon-chevron-right"></span> Details</a></button>';
             $str .= '</form></div></div></div></div></div>';
@@ -210,6 +211,7 @@ function showChangePageBtn($numberOfPage,$page){
     $str .= '</ul></nav></div>';
     echo $str;
 }
+
 
 /* 获得用户购物车商品 */
 function getShoppingCartArtworks(){
@@ -251,32 +253,34 @@ function getShoppingCart($artworkID){
 /* 展示购物车内商品 */
 function showShoppingCart($row){
     if($row === NULL){
-        echo '<div id="cartWorks" class="row">This artwork has disappeared</div>';
+        echo '<div class="jumbotron"><div class="container"><p class="text-center">(⊙ˍ⊙)? This artwork has disappeared</p></div></div><hr class="featurette-divider">';
     }else{
-        $rowDes = substr($row['description'], 0, 200);
+        $rowDes = substr($row['description'], 0, 125);
         $rowDes = preg_replace('/<em>/i','',$rowDes);
         $rowDes = preg_replace('/<\/em>/i','',$rowDes);
         $str = '<div id="cartWorks" class="row"><div class="col-md-3"><img src="resources/img/' . $row['imageFileName'] . '" class="cartImg pull-left"></div>';
         $str .= '<div class="col-md-3"><div class="panel panel-info"><div class="panel-heading"><h4 class="panel-title">Artwork Infomation</h4></div>';
         $str .= '<table class="table"><tr><td>title:</td><td>' . $row['title'] . '</td></tr>';
         $str .= '<tr><td>artist:</td><td>' . $row['artist'] . '</td></tr>';
-        $str .= '<tr><td>price:</td><td>$' . $row['price'] . '</td></tr></table></div></div>';
-        $str .= '<div class="col-md-4"><div class="panel panel-info"><div class="panel-heading"><h4 class="panel-title">Artwork Description</h4></div>';
+        $str .= '<tr><td>price:</td><td>$ ' . $row['price'] . '</td></tr></table></div></div>';
+        $str .= '<div class="col-md-3"><div class="panel panel-info"><div class="panel-heading"><h4 class="panel-title">Artwork Description</h4></div>';
         $str .= '<div class="panel-body">' . $rowDes . '...</div></div></div>';
-        $str .= '<div class="col-md-2"><div class="btn-group pull-right" role="group">';
-        $str .= '<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span><a href="详情.php?workID=' . $row['artworkID'] . '"> 详情</a></button>';
-        $str .= '<button type="button" class="btn btn-danger" onclick="deleteArtwork(' . $row['artworkID'] . ');"><span class="glyphicon glyphicon-trash"></span> 删除</button>';
+        $str .= '<div class="col-md-3 text-center"><div class="btn-group" role="group">';
+        $str .= '<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span><a href="详情.php?workID=' . $row['artworkID'] . '"> Details</a></button>';
+        $str .= '<button type="button" class="btn btn-danger" onclick="deleteArtwork(' . $row['artworkID'] . ');"><span class="glyphicon glyphicon-trash"></span> Delete</button>';
         $str .= '</div></div></div><hr class="featurette-divider">';
         echo $str;
     }
 }
 /* 展示总价和下单按钮 */
-function showPurchaseBtn($sum,$artworkID){
+function showPurchaseBtn($sum){
     $str = '<div class="row"><div class="col-md-2 col-md-offset-8"><p class="highLight pull-right">Sum:$' . $sum . '</p>';
     $str .= '</div><div class="col-md-2"><button type="button" class="btn btn-default purchase pull-right">';
-    $str .= '<span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;下单</button></div></div>';
+    $str .= '<a href="#" data-toggle="modal" data-target="#purchase">';
+    $str .= '<span class="glyphicon glyphicon-send"></span>&nbsp;Purchase</a></button></div></div>';
     echo $str;
 }
+
 
 /* 悬浮购物车 */
 function littleShoppingCart($artworkID){
@@ -296,4 +300,91 @@ function littleShoppingCart($artworkID){
         }
         $connect->close();
     }
+}
+
+
+/* 展示订单 */
+function showOrders(){
+    $userID = $_SESSION['userID'];
+    $connect = connectDB();
+    $sql = "SELECT * FROM orders WHERE ownerID='" . $userID . "'";
+    $result = $connect->query($sql);
+    if($result->num_rows <= 0){
+        echo '<tr><td colspan="4"><p><br><br></p></td></tr>';
+    }else{
+        $orders = array();
+        while ($row = $result->fetch_assoc()){
+            array_push($orders,$row);
+        }
+        for($i = 0;$i < count($orders);$i++){
+            $sql = "SELECT artworkID,title FROM artworks WHERE orderID='" . $orders[$i]['orderID'] . "'";
+            $result = $connect->query($sql);
+            if($result->num_rows <= 0){
+                $orders[$i]['title'] = "DISAPPEARED";
+            }else{
+                $row = $result->fetch_assoc();
+                $orders[$i]['title'] = $row['title'];
+                $orders[$i]['artworkID'] = $row['artworkID'];
+            }
+        }
+        $str = '';
+        for($i = 0;$i < count($orders) && $orders[$i]['title'] !== "DISAPPEARED";$i++){
+            $str .= '<tr><td>' . $orders[$i]['orderID'] . '</td>';
+            $str .= '<td><button class="btn btn-link"><a href="详情.php?workID=' . $orders[$i]['artworkID'] . '">' . $orders[$i]['title'] . '</a></button></td>';
+            $str .= '<td>' . $orders[$i]['timeCreated'] . '</td>';
+            $str .= '<td>$' . $orders[$i]['sum'] . '</td></tr>';
+        }
+        echo $str;
+    }
+    $connect->close();
+}
+
+/* 展示售出商品 */
+function showSells(){
+    $userID = $_SESSION['userID'];
+    $connect = connectDB();
+    $sql = "SELECT title,artworkID,orderID FROM artworks WHERE ownerID='" . $userID . "' AND orderID is not NULL";
+    $result = $connect->query($sql);
+    if($result->num_rows <= 0){
+        echo '<tr><td colspan="4"><p><br><br></p></td></tr>';
+    }else{
+        $sells = array();
+        while ($row = $result->fetch_assoc()){
+            array_push($sells,$row);
+        }
+        for($i = 0;$i < count($sells);$i++){
+            $sql = "SELECT * FROM orders WHERE orderID='" . $sells[$i]['orderID'] . "'";
+            $result = $connect->query($sql);
+            if($result->num_rows <= 0){
+                $sells[$i]['buyerID'] = "DISAPPEARED";
+            }else{
+                $row = $result->fetch_assoc();
+                $sells[$i]['buyerID'] = $row['ownerID'];
+                $sells[$i]['sum'] = $row['sum'];
+                $sells[$i]['timeCreated'] = $row['timeCreated'];
+                $sql = "SELECT name,email,tel,address FROM users WHERE userID='" . $sells[$i]['buyerID'] . "'";
+                $result = $connect->query($sql);
+                if($result->num_rows <= 0){
+                    $sells[$i]['buyerName'] = "DISAPPEARED";
+                }else{
+                    $row = $result->fetch_assoc();
+                    $sells[$i]['buyerName'] = $row['name'];
+                    $sells[$i]['buyerEmail'] = $row['email'];
+                    $sells[$i]['buyerTel'] = $row['tel'];
+                    $sells[$i]['buyerAddress'] = $row['address'];
+                }
+            }
+        }
+        $str = '';
+        for($i = 0;$i < count($sells) && $sells[$i]['buyerID'] !== "DISAPPEARED" && $sells[$i]['buyerName'] !== "DISAPPEARED";$i++){
+            $str .= '<tr><td><button class="btn btn-link"><a href="详情.php?workID=' . $sells[$i]['artworkID'] . '">' . $sells[$i]['title'] . '</a></button></td>';
+            $str .= '<td>' . $sells[$i]['timeCreated'] . '</td>';
+            $str .= '<td>$' . $sells[$i]['sum'] . '</td>';
+            $str .= '<td><a data-toggle="popover" data-placement="top" title="' . $sells[$i]['buyerName'] . '" ';
+            $str .= 'data-content="Email:' . $sells[$i]['buyerEmail'] . '&lt;br&gt;Tel:' . $sells[$i]['buyerTel'] . '&lt;br&gt;';
+            $str .= 'Address:' . $sells[$i]['buyerAddress'] . '">' . $sells[$i]['buyerName'] . '</a></td></tr>';
+        }
+        echo $str;
+    }
+    $connect->close();
 }

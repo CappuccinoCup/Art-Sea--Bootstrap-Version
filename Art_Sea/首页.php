@@ -28,7 +28,7 @@
     saveFootprint("Home",'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     $connect = connectDB();
     //获取热门作品前三
-    $sql = "SELECT artworkID,artist,imageFileName,title,description FROM artworks ORDER BY view DESC LIMIT 0,3";
+    $sql = "SELECT artworkID,artist,imageFileName,title,description FROM artworks WHERE orderID is NULL ORDER BY view DESC LIMIT 0,3";
     $result1 = $connect->query($sql);
     if ($result1->num_rows > 0) {
         for ($i = 0; $i < 3; $i++) {
@@ -39,7 +39,7 @@
         }
     }
     //获取最新作品前六
-    $sql = "SELECT artworkID,artist,imageFileName,title,description FROM artworks ORDER BY timeReleased DESC LIMIT 0,6";
+    $sql = "SELECT artworkID,artist,imageFileName,title,description FROM artworks WHERE orderID is NULL ORDER BY timeReleased DESC LIMIT 0,6";
     $result2 = $connect->query($sql);
     if ($result2->num_rows > 0) {
         for ($i = 0; $i < 6; $i++) {
@@ -59,7 +59,7 @@
                 <a class="self-brand" href="首页.php">Art Sea </a>swim in the sea of masterpieces
                 <div class="pull-right self-linkGroup">
                     <a href="首页.php" class="currentPage">Home</a>
-                    <a href="搜索.php" target="_blank">Search</a>
+                    <a href="搜索.php">Search</a>
                     <!-- 以下的代码结构很有用 -->
                     <?php
                     if (!isset($_SESSION['admin']) || $_SESSION['admin'] === FALSE) {
@@ -69,8 +69,8 @@
                     <?php
                 } else {
                     ?>
-                        <a href="个人中心.php" target="_blank"><?php echo $_SESSION['name']; ?></a>
-                        <a href="购物车.php" target="_blank">Shopping Cart</a>
+                        <a href="个人中心.php"><?php echo $_SESSION['name']; ?></a>
+                        <a href="购物车.php">Shopping Cart</a>
                         <a href="./php/登出.php">Sign out</a>
                     <?php
                 } ?>
@@ -97,7 +97,7 @@
                     echo $str;
                     ?>
                 </p>
-                <form action="详情.php" method="GET" target="_blank">
+                <form action="详情.php" method="GET">
                     <input type="text" class="invisibleInput" name="workID" id="workID" value="<?php echo $hot[0]['artworkID']; ?>">
                     <button class="btn btn-default" type="submit"><a>Details</a></button>
                 </form>

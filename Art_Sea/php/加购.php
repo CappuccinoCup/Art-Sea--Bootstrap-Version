@@ -4,7 +4,7 @@ include("functions.php");
 session_start();
 
 if(!isset($_SESSION['admin']) || $_SESSION['admin'] === FALSE){
-    echo "Please log in";
+    echo "Please sign in first";
 }else{
     $connect = connectDB();
     $artworkID = $_GET['artworkID'];
@@ -14,12 +14,12 @@ if(!isset($_SESSION['admin']) || $_SESSION['admin'] === FALSE){
     if ($result->num_rows > 0){
         $row = $result->fetch_assoc();
         if($row['orderID'] !== NULL){
-            echo "Artwork has been sold";
+            echo "This artwork has been sold";
         }else{
             $sql = "SELECT * FROM carts WHERE artworkID='" . $artworkID . "' AND userID='" . $userID . "'";
             $result = $connect->query($sql);
             if($result->num_rows > 0){
-                echo "Artwork is already exist in your cart";
+                echo "This artwork is already exist in your cart";
             }else{
                 $sql = "INSERT INTO carts (userID,artworkID) VALUE ('" . $userID . "','" . $artworkID . "')";
                 if ($connect->query($sql) === TRUE){
@@ -30,7 +30,7 @@ if(!isset($_SESSION['admin']) || $_SESSION['admin'] === FALSE){
             }
         }
     }else{
-        echo "Artwork doesn't exist";
+        echo "This artwork doesn't exist";
     }
     $connect->close();
 }

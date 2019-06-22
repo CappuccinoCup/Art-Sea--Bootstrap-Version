@@ -32,6 +32,7 @@
 } else {
     $artworkID = getShoppingCartArtworks();
     ?>
+        <?php include('php/modal_purchase.php'); ?>
         <?php include('php/header.php'); ?>
 
         <main class="shoppingCart">

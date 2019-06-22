@@ -147,7 +147,13 @@
                                     </div>
                                 </div>
                                 <p>&nbsp;</p>
-                            <?php } ?>
+                            <?php 
+                            $view = $row['view'] + 1;
+                            $artworkID = $row['artworkID'];
+                            $sql = "UPDATE artworks SET view='" . $view . "' WHERE artworkID='" . $artworkID . "'";
+                            $connect->query($sql);
+                            } 
+                        ?>
                         </div>
                         <div class="col-md-2">
                             <div class="panel panel-info">
