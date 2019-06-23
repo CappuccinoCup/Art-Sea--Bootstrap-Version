@@ -31,7 +31,7 @@
     <?php
 } else {
     $connect = connectDB();
-    $sql = "SELECT name,email,tel,address,balance FROM users WHERE name='" . $_SESSION['name'] . "'";
+    $sql = "SELECT name,email,tel,address,balance FROM users WHERE userID='" . $_SESSION['userID'] . "'";
     $result = $connect->query($sql);
     if ($result->num_rows <= 0) {
         ?>

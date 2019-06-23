@@ -4,8 +4,8 @@ include("functions.php");
 session_start();
 
 $connect = connectDB();
-
-$sql = "SELECT name,password,userID FROM users WHERE name='" . $_POST['signInUsername'] . "'";
+$username = str_replace("'","''",$_POST['signInUsername']);
+$sql = "SELECT name,password,userID FROM users WHERE name='" . $username . "'";
 $result = $connect->query($sql);
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();

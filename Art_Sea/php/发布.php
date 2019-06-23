@@ -6,15 +6,15 @@ session_start();
 if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE) {
     $connect = connectDB();
 
-    $title = $_POST['title'];
-    $artist = $_POST['artist'];
-    $description = $_POST['description'];
-    $yearOfWork = $_POST['yearOfWork'];
-    $genre = $_POST['genre'];
-    $width = $_POST['width'];
-    $height = $_POST['height'];
-    $price = $_POST['price'];
-    $imageFileName = $_FILES['image']['name'];//若无文件上传则为空字符串
+    $title = str_replace("'","''",$_POST['title']);
+    $artist = str_replace("'","''",$_POST['artist']);
+    $description = str_replace("'","''",$_POST['description']);
+    $yearOfWork = str_replace("'","''",$_POST['yearOfWork']);
+    $genre = str_replace("'","''",$_POST['genre']);
+    $width = str_replace("'","''",$_POST['width']);
+    $height = str_replace("'","''",$_POST['height']);
+    $price = str_replace("'","''",$_POST['price']);
+    $imageFileName = str_replace("'","''",$_FILES['image']['name']);//若无文件上传则为空字符串
     //防止文件同名
     if($imageFileName !== ""){
         $sql = "SELECT imageFileName FROM artworks WHERE imageFileName='" . $imageFileName . "'";
@@ -34,7 +34,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE) {
             move_uploaded_file($_FILES["image"]["tmp_name"],"../resources/img/" . $imageFileName);
             echo "success";
         }else{
-            echo "fail";
+            echo $connect->error;
         }
     } elseif (isset($_POST['artworkID'])) {
         //修改

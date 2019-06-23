@@ -9,7 +9,12 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE) {
     $connect = connectDB();
     $sql = "DELETE FROM artworks WHERE artworkID='" . $artworkID . "' AND ownerID='" . $userID . "'";
     if($connect->query($sql)){
-        echo "delete successfully";
+        $sql = "DELETE FROM carts WHERE artworkID='" . $artworkID . "'";
+        if($connect->query($sql)){
+            echo "delete successfully";
+        }else{
+            echo "what are you doing";
+        }
     }else{
         echo "what are you doing";
     }

@@ -192,10 +192,12 @@
                 </div>
             </main>
 
-        <?php } } ?>
+        <?php } 
+        $connect->close();
+        } 
+        ?>
         
         <?php include('php/footer.php'); ?>
-        <?php $connect->close(); ?>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
