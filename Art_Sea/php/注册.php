@@ -18,5 +18,6 @@ if ($result->num_rows > 0) {
     $_SESSION['admin'] = TRUE;
     $_SESSION['name'] = $_POST['signUpUsername'];
     echo "success";
+    $connect->close();
 }
 ?>

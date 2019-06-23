@@ -193,7 +193,9 @@
             </main>
 
         <?php } } ?>
+        
         <?php include('php/footer.php'); ?>
+        <?php $connect->close(); ?>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->

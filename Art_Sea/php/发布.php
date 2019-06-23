@@ -58,5 +58,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE) {
     } else {
         echo "fail";
     }
+    $connect->close();
 }
 ?>

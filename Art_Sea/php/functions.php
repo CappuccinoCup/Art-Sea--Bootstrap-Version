@@ -322,6 +322,7 @@ function showMyArtworks(){
         }
         echo $str;
     }
+    $connect->close();
 }
 
 

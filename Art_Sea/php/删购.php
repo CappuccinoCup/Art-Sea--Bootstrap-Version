@@ -13,5 +13,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE) {
     } else {
         echo "deleting error:" . $connect->error;
     }
+    $connect->close();
 }
 ?>

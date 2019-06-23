@@ -19,5 +19,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE){
             echo "充值成功！";
         }
     }
+    $connect->close();
 }
 ?>

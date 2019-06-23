@@ -13,5 +13,6 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE) {
     }else{
         echo "what are you doing";
     }
+    $connect->close();
 }
 ?>
