@@ -34,7 +34,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE) {
             move_uploaded_file($_FILES["image"]["tmp_name"],"../resources/img/" . $imageFileName);
             echo "success";
         }else{
-            echo $connect->error;
+            echo "fail";
         }
     } elseif (isset($_POST['artworkID'])) {
         //修改
