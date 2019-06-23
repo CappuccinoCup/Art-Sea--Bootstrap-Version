@@ -266,7 +266,7 @@ function showShoppingCart($row){
         $str .= '<div class="col-md-3"><div class="panel panel-info"><div class="panel-heading"><h4 class="panel-title">Artwork Description</h4></div>';
         $str .= '<div class="panel-body">' . $rowDes . '...</div></div></div>';
         $str .= '<div class="col-md-3 text-center"><div class="btn-group" role="group">';
-        $str .= '<button class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span><a href="详情.php?workID=' . $row['artworkID'] . '"> Details</a></button>';
+        $str .= '<button class="btn btn-default" onclick="window.open(\'详情.php?workID=' . $row['artworkID'] . '\',\'_self\');"><a><span class="glyphicon glyphicon-chevron-right"></span> Details</a></button>';
         $str .= '<button type="button" class="btn btn-danger" onclick="deleteArtwork(' . $row['artworkID'] . ');"><span class="glyphicon glyphicon-trash"></span> Delete</button>';
         $str .= '</div></div></div><hr class="featurette-divider">';
         echo $str;
@@ -277,7 +277,7 @@ function showPurchaseBtn($sum){
     $str = '<div class="row"><div class="col-md-2 col-md-offset-8"><p class="highLight pull-right">Sum:$' . $sum . '</p>';
     $str .= '</div><div class="col-md-2"><button type="button" class="btn btn-default purchase pull-right">';
     $str .= '<a href="#" data-toggle="modal" data-target="#purchase">';
-    $str .= '<span class="glyphicon glyphicon-send"></span>&nbsp;Purchase</a></button></div></div>';
+    $str .= '<span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;Purchase</a></button></div></div>';
     echo $str;
 }
 
@@ -299,6 +299,28 @@ function littleShoppingCart($artworkID){
             }
         }
         $connect->close();
+    }
+}
+
+/* 展示我的商品 */
+function showMyArtworks(){
+    $userID = $_SESSION['userID'];
+    $connect = connectDB();
+    $sql = "SELECT title,artworkID,timeReleased FROM artworks WHERE ownerID='" . $userID . "'";
+    $result = $connect->query($sql);
+    if($result->num_rows <= 0){
+        echo '<tr><td colspan="4"><p><br><br></p></td></tr>';
+    }else{
+        $str = '';
+        while($row = $result->fetch_assoc()){
+            $str .= '<tr class="myWorks"><td><p>';
+            $str .= '<button class="btn btn-link"><a href="详情.php?workID=' . $row['artworkID'] . '">' . $row['title'] . '</a></button>';
+            $str .= '</p></td><td><p>' . $row['timeReleased'] . '</p></td><td><div class="btn-group pull-right" role="group">';
+            $str .= '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Modify</button>';
+            $str .= '<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</button>';
+            $str .= '</div></td></tr>';
+        }
+        echo $str;
     }
 }
 
@@ -328,11 +350,13 @@ function showOrders(){
             }
         }
         $str = '';
-        for($i = 0;$i < count($orders) && $orders[$i]['title'] !== "DISAPPEARED";$i++){
+        for($i = 0;$i < count($orders);$i++){
+            if($orders[$i]['title'] !== "DISAPPEARED"){
             $str .= '<tr><td>' . $orders[$i]['orderID'] . '</td>';
             $str .= '<td><button class="btn btn-link"><a href="详情.php?workID=' . $orders[$i]['artworkID'] . '">' . $orders[$i]['title'] . '</a></button></td>';
             $str .= '<td>' . $orders[$i]['timeCreated'] . '</td>';
             $str .= '<td>$' . $orders[$i]['sum'] . '</td></tr>';
+            }
         }
         echo $str;
     }
@@ -376,13 +400,15 @@ function showSells(){
             }
         }
         $str = '';
-        for($i = 0;$i < count($sells) && $sells[$i]['buyerID'] !== "DISAPPEARED" && $sells[$i]['buyerName'] !== "DISAPPEARED";$i++){
+        for($i = 0;$i < count($sells);$i++){
+            if($sells[$i]['buyerID'] !== "DISAPPEARED" && $sells[$i]['buyerName'] !== "DISAPPEARED"){
             $str .= '<tr><td><button class="btn btn-link"><a href="详情.php?workID=' . $sells[$i]['artworkID'] . '">' . $sells[$i]['title'] . '</a></button></td>';
             $str .= '<td>' . $sells[$i]['timeCreated'] . '</td>';
             $str .= '<td>$' . $sells[$i]['sum'] . '</td>';
             $str .= '<td><a data-toggle="popover" data-placement="top" title="' . $sells[$i]['buyerName'] . '" ';
             $str .= 'data-content="Email:' . $sells[$i]['buyerEmail'] . '&lt;br&gt;Tel:' . $sells[$i]['buyerTel'] . '&lt;br&gt;';
             $str .= 'Address:' . $sells[$i]['buyerAddress'] . '">' . $sells[$i]['buyerName'] . '</a></td></tr>';
+            }
         }
         echo $str;
     }

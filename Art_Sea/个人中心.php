@@ -129,49 +129,10 @@
                                         <h3 class="panel-title">My artworks list</h3>
                                     </div>
                                     <table class="table">
-                                        <tr>
-                                            <td>artwork title</td>
-                                            <td>time uploaded</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr class="myWorks">
-                                            <td>
-                                                <p>
-                                                    <form action="详情.html" method="GET">
-                                                        <input type="text" class="invisibleInput" name="workID" id="workID" value="000001">
-                                                        <button class="btn btn-link" type="submit">这里展示艺术品名</button>
-                                                    </form>
-                                                </p>
-                                            </td>
-                                            <td>
-                                                <p>这里展示上传时间</p>
-                                            </td>
-                                            <td>
-                                                <div class="btn-group pull-right" role="group">
-                                                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
-                                                    <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> 删除</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="myWorks">
-                                            <td>
-                                                <p>
-                                                    <form action="详情.html" method="GET">
-                                                        <input type="text" class="invisibleInput" name="workID" id="workID" value="000001">
-                                                        <button class="btn btn-link" type="submit">这里展示艺术品名</button>
-                                                    </form>
-                                                </p>
-                                            </td>
-                                            <td>
-                                                <p>这里展示上传时间</p>
-                                            </td>
-                                            <td>
-                                                <div class="btn-group pull-right" role="group">
-                                                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
-                                                    <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> 删除</button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        <tr><td>artwork title</td><td>time uploaded</td><td></td></tr>
+
+                                        <?php showMyArtworks(); ?>
+                                        
                                     </table>
                                 </div>
                             </div>

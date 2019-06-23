@@ -41,7 +41,8 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE) {
         } else {
             $sql = "UPDATE users SET balance='" . ($row['balance'] - $sum) . "' WHERE userID='" . $userID . "'";
             $connect->query($sql);
-            for ($i = 0; $i < count($available) && $available[$i][0] !== FALSE; $i++) {
+            for ($i = 0; $i < count($available); $i++) {
+                if($available[$i][0] !== FALSE){
                 $sql = "INSERT INTO orders (ownerID,sum) VALUE ('" . $userID . "','" . $available[$i][0] . "')";
                 if ($connect->query($sql)) {
                     $orderID = $connect->insert_id;
@@ -57,6 +58,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE) {
                         }
                     }
                 }
+            }
             }
             $str .= "购买成功！共花费$" . $sum . "\n";
         }
