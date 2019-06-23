@@ -7,9 +7,11 @@ function deleteArtwork(artworkID){
         location.reload();
     }
     }
-
-    xmlhttp.open("GET","./php/删购.php?artworkID=" + artworkID,true);
-    xmlhttp.send();
+    var result = confirm("Are you sure to delete this artwork?");  
+    if (result == true){ 
+        xmlhttp.open("GET","./php/删购.php?artworkID=" + artworkID,true);
+        xmlhttp.send();
+    }
 }
 
 function purchase(url){

@@ -43,7 +43,7 @@
         ?>
             <div class="jumbotron">
                 <div class="container">
-                    <p class="text-center">ԅ(¯﹃¯ԅ) The artwork you are searching for does not exist</p>
+                    <p class="text-center">ԅ(¯﹃¯ԅ) This artwork has jumped to another world line</p>
                 </div>
             </div>
         <?php
@@ -148,10 +148,6 @@
                                 </div>
                                 <p>&nbsp;</p>
                             <?php 
-                            $view = $row['view'] + 1;
-                            $artworkID = $row['artworkID'];
-                            $sql = "UPDATE artworks SET view='" . $view . "' WHERE artworkID='" . $artworkID . "'";
-                            $connect->query($sql);
                             } 
                         ?>
                         </div>
@@ -181,7 +177,13 @@
             </section>
 
             <?php include('php/footer.php'); ?>
-            <?php $connect->close(); ?>
+            <?php 
+            $view = $row['view'] + 1;
+            $artworkID = $row['artworkID'];
+            $sql = "UPDATE artworks SET view='" . $view . "' WHERE artworkID='" . $artworkID . "'";
+            $connect->query($sql);
+            $connect->close(); 
+            ?>
 
             <!-- Bootstrap core JavaScript
             ================================================== -->

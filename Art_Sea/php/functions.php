@@ -46,10 +46,10 @@ function showFootprint(){
         $footprint = $_SESSION['footprint'];
         $str ="";
         for($i = 0;$i < count($footprint) - 1;$i++){
-            $str .= '<a href="' . $footprint[$i][1] . '">' . $footprint[$i][0] . ' </a>';
+            $str .= '<a href="' . $footprint[$i][1] . '"> ' . $footprint[$i][0] . ' </a>';
             $str .= '<span class="glyphicon glyphicon-arrow-right"></span>';
         }
-        $str .= '<a href="' . $footprint[count($footprint) - 1][1] . '" class="currentPage">' . $footprint[count($footprint) - 1][0] . ' </a>';
+        $str .= '<a href="' . $footprint[count($footprint) - 1][1] . '" class="currentPage"> ' . $footprint[count($footprint) - 1][0] . ' </a>';
         echo $str;
     }
 }
@@ -253,7 +253,7 @@ function getShoppingCart($artworkID){
 /* 展示购物车内商品 */
 function showShoppingCart($row){
     if($row === NULL){
-        echo '<div class="jumbotron"><div class="container"><p class="text-center">(⊙ˍ⊙)? This artwork has disappeared</p></div></div><hr class="featurette-divider">';
+        echo '<div class="jumbotron"><div class="container"><p class="text-center">(⊙ˍ⊙)? This artwork has jumped to another world line</p></div></div><hr class="featurette-divider">';
     }else{
         $rowDes = substr($row['description'], 0, 125);
         $rowDes = preg_replace('/<em>/i','',$rowDes);
@@ -292,7 +292,7 @@ function littleShoppingCart($artworkID){
             $sql = "SELECT title,price FROM artworks WHERE artworkID='" . $artworkID[$i] . "'";
             $result = $connect->query($sql);
             if ($result->num_rows <= 0){
-                echo 'This artwork has disappeared';
+                echo 'This artwork has jumped to another world line';
             }else{
                 $row = $result->fetch_assoc();
                 echo $row['title'] . '&lt;br&gt;$' . $row['price'] . '&lt;br&gt;';
@@ -306,7 +306,7 @@ function littleShoppingCart($artworkID){
 function showMyArtworks(){
     $userID = $_SESSION['userID'];
     $connect = connectDB();
-    $sql = "SELECT title,artworkID,timeReleased FROM artworks WHERE ownerID='" . $userID . "'";
+    $sql = "SELECT title,artworkID,timeReleased FROM artworks WHERE ownerID='" . $userID . "' AND orderID is NULL";
     $result = $connect->query($sql);
     if($result->num_rows <= 0){
         echo '<tr><td colspan="4"><p><br><br></p></td></tr>';
@@ -316,8 +316,8 @@ function showMyArtworks(){
             $str .= '<tr class="myWorks"><td><p>';
             $str .= '<button class="btn btn-link"><a href="详情.php?workID=' . $row['artworkID'] . '">' . $row['title'] . '</a></button>';
             $str .= '</p></td><td><p>' . $row['timeReleased'] . '</p></td><td><div class="btn-group pull-right" role="group">';
-            $str .= '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Modify</button>';
-            $str .= '<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</button>';
+            $str .= '<button type="button" class="btn btn-default" onclick="modifyMyArtwork(' . $row['artworkID'] . ');"><span class="glyphicon glyphicon-pencil"></span> Modify</button>';
+            $str .= '<button type="button" class="btn btn-danger" onclick="deleteMyArtwork(' . $row['artworkID'] . ');"><span class="glyphicon glyphicon-trash"></span> Delete</button>';
             $str .= '</div></td></tr>';
         }
         echo $str;

@@ -37,7 +37,7 @@
         ?>
             <div class="jumbotron">
                 <div class="container">
-                    <p class="text-center">(￣_￣|||) This user does not exist</p>
+                    <p class="text-center">(￣_￣|||) This user has jumped to another world line</p>
                 </div>
             </div>
         <?php } else {
@@ -56,20 +56,20 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">用户充值</h4>
+                            <h4 class="modal-title" id="myModalLabel">Recharge</h4>
                         </div>
                         <div class="modal-body">
                             <form autocomplete="off">
                                 <div class="form-group">
-                                    <label for="depositNumber">充值金额</label><br><br>
+                                    <label for="depositNumber">Recharge Number</label><br><br>
                                     <input type="text" class="form-control" id="depositNumber" name="depositNumber" placeholder="请输入一个正整数">
-                                    <br><p class="invisible" id="numberError">请输入一个正整数！</p>
+                                    <br><p class="invisible" id="numberError">Please enter a positive integer!</p>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-primary" id="depositBtn" onclick="deposit();">充值</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="depositBtn" onclick="deposit();">Recharge</button>
                         </div>
                     </div>
                 </div>
@@ -114,8 +114,8 @@
                                     <tr>
                                         <td colspan="2">
                                             <div class="btn-group pull-right" role="group">
-                                                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
-                                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deposit"><span class="glyphicon glyphicon-qrcode"></span> 充值</button>
+                                                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Modify</button>
+                                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#deposit"><span class="glyphicon glyphicon-qrcode"></span> Recharge</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -126,7 +126,9 @@
                             <div class="row">
                                 <div class="panel panel-info">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">My artworks list</h3>
+                                        <h3 class="panel-title container">My artworks list
+                                        <button type="button" class="btn btn-default pull-right" onclick="window.open('发布.php','_self');"><span class="glyphicon glyphicon-share-alt"></span> Release</button>
+                                        </h3>
                                     </div>
                                     <table class="table">
                                         <tr><td>artwork title</td><td>time uploaded</td><td></td></tr>
