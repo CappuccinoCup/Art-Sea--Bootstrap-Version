@@ -65,6 +65,25 @@ function setRelease(){
             document.getElementById("priceError").className = "";
             return false;
         }else{return true;}
+    }function checkImage(){
+        if(document.getElementById("image").value == ""){
+            alert("image must not be empty");
+            return false;
+        }else{
+            var fileType = document.getElementById("image").files[0].type;
+            if(fileType != "image/jpg" && fileType != "image/jpeg" && fileType != "image/png"){
+                alert("please upload .jpg .jpeg or .png file");
+                return false;
+            }else{return true;}
+        }
+    }function checkImageType(){
+        if(document.getElementById("image").value !== ""){
+            var fileType = document.getElementById("image").files[0].type;
+            if(fileType != "image/jpg" && fileType != "image/jpeg" && fileType != "image/png"){
+                alert("please upload .jpg .jpeg or .png file");
+                return false;
+            }else{return true;}
+        }else{return true;}
     }
 
     document.getElementById("title").onblur = checkTitle;
@@ -78,16 +97,16 @@ function setRelease(){
     if(document.getElementById("releaseBtn") !== null){
     document.getElementById("releaseBtn").onclick = function (){
         if(checkTitle() && checkArtist() && checkDescription() && checkYearOfWork() && checkGenre()
-          && checkWidth() && checkHeight() && checkPrice()){
+          && checkWidth() && checkHeight() && checkPrice() && checkImage()){
             release();
-        }else {alert("不符合发布要求！");}
+        }else {alert("Does not meet the release requirements!");}
     }}
     if(document.getElementById("modifyBtn") !== null){
     document.getElementById("modifyBtn").onclick = function (){
         if(checkTitle() && checkArtist() && checkDescription() && checkYearOfWork() && checkGenre()
-          && checkWidth() && checkHeight() && checkPrice()){
+          && checkWidth() && checkHeight() && checkPrice() && checkImageType()){
             modify();
-        }else {alert("不符合修改要求！");}
+        }else {alert("Does not meet the modification requirements!");}
     }}
 }
 
@@ -97,26 +116,16 @@ function release(){
     xmlhttp.onreadystatechange=function(){
     if (xmlhttp.readyState==4 && xmlhttp.status==200){
         if(xmlhttp.responseText === "success"){
-            alert("发布成功！");
+            alert("Release successfully!");
             window.open("个人中心.php","_self");
         }else {
-            alert("发布失败！请检查数据库是否已连接。");
+            alert("Release unsuccessfully! Please check whether the database is connected.");
         }
     }
     }
-    var ownerID = document.getElementById("ownerID").value;
-    var title = document.getElementById("title").value;
-    var artist = document.getElementById("artist").value;
-    var description = document.getElementById("description").value;
-    var yearOfWork = document.getElementById("yearOfWork").value;
-    var genre = document.getElementById("genre").value;
-    var width = document.getElementById("width").value;
-    var height = document.getElementById("height").value;
-    var price = document.getElementById("price").value;
-    alert('发布');
-    // xmlhttp.open("POST","./php/发布.php",true);
-    // xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    // xmlhttp.send("");
+    let formdata = new FormData(document.forms[0]);
+    xmlhttp.open("POST","./php/发布.php",true);
+    xmlhttp.send(formdata);
 }
 function modify(){
     var xmlhttp;
@@ -124,23 +133,30 @@ function modify(){
     xmlhttp.onreadystatechange=function(){
     if (xmlhttp.readyState==4 && xmlhttp.status==200){
         if(xmlhttp.responseText === "success"){
-            alert("修改成功！");
+            alert("Modify successfully!");
             window.open("个人中心.php","_self");
         }else {
-            alert("修改失败！请检查数据库是否已连接。");
+            alert("Modify unsuccessfully! Please check whether the database is connected.");
         }
     }
     }
-    var title = document.getElementById("title").value;
-    var artist = document.getElementById("artist").value;
-    var description = document.getElementById("description").value;
-    var yearOfWork = document.getElementById("yearOfWork").value;
-    var genre = document.getElementById("genre").value;
-    var width = document.getElementById("width").value;
-    var height = document.getElementById("height").value;
-    var price = document.getElementById("price").value;
-    alert('修改');
-    // xmlhttp.open("POST","./php/发布.php",true);
-    // xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    // xmlhttp.send("");
+    
+    let formdata = new FormData(document.forms[0]);
+    xmlhttp.open("POST","./php/发布.php",true);
+    xmlhttp.send(formdata);
+}
+
+function showImage(files){
+    var file = files[0];
+    if(!/image\/jpg/.test(file.type) && !/image\/jpeg/.test(file.type) && !/image\/png/.test(file.type)){ 
+        alert("please upload .jpg .jpeg or .png file"); 
+        return false; 
+    }
+    var reader = new FileReader(); 
+    //将文件以Data URL形式读入页面 
+    reader.readAsDataURL(file); 
+    reader.onload=function(e){ 
+        var imageResult = document.getElementById("imageResult"); 
+        imageResult.innerHTML='<img src="' + this.result +'" class="img-responsive">'; 
+    } 
 }

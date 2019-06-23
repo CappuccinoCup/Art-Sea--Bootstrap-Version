@@ -48,9 +48,13 @@
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                     <input type="text" id="ownerID" name="ownerID" value="<?php echo $_SESSION['userID'];?>" class="invisibleInput">
-                    <div class="form-group">
-                    <label for="image">Artwork Image</label>
-                    <input type="file" id="image" name="image">
+                    <div class="row">
+                        <div class="col-md-7"><div class="form-group">
+                        <label for="image">Artwork Image</label>
+                        <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" onchange="showImage(this.files);">
+                        <p class="help-block">Only accept one .jpg .jpeg or .png file.</p>
+                        </div></div>
+                        <div class="col-md-5" id="imageResult"></div>
                     </div>
                     <div class="form-group">
                     <label for="title">Title</label>
@@ -131,12 +135,14 @@
                     <form autocomplete="off">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
+                            <input type="text" id="artworkID" name="artworkID" value="<?php echo $artworkID; ?>" class="invisibleInput">
                         <div class="row">
                             <div class="col-md-7"><div class="form-group">
                             <label for="image">Artwork Image</label>
-                            <input type="file" id="image" name="image">
+                            <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" onchange="showImage(this.files);">
+                            <p class="help-block">Only accept one .jpg .jpeg or .png file.</p>
                             </div></div>
-                            <div class="col-md-5"><img src="resources/img/<?php echo $row['imageFileName']; ?>" class="img-responsive" alt="<?php echo $row['title']; ?>"></div>
+                            <div class="col-md-5" id="imageResult"><img src="resources/img/<?php echo $row['imageFileName']; ?>" class="img-responsive" alt="<?php echo $row['title']; ?>"></div>
                         </div>
                         <div class="form-group">
                         <label for="title">Title</label>

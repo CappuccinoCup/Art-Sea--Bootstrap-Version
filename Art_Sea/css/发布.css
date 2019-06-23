@@ -1,3 +1,3 @@
-main.release form p,main.modify form p{
+main.release form p[id],main.modify form p[id]{
     color: red;
 }
