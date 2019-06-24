@@ -127,21 +127,21 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Recharge</h4>
+                            <h4 class="modal-title" id="myModalLabel">用户充值</h4>
                         </div>
                         <div class="modal-body">
                             <form autocomplete="off">
                                 <div class="form-group">
-                                    <label for="depositNumber">Recharge Number</label><br><br>
+                                    <label for="depositNumber">充值金额</label><br><br>
                                     <input type="text" class="form-control" id="depositNumber" name="depositNumber" placeholder="请输入一个正整数">
                                     <br>
-                                    <p class="invisible" id="numberError">Please enter a positive integer!</p>
+                                    <p class="invisible" id="numberError">请输入一个正整数！</p>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="depositBtn" onclick="deposit();">Recharge</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="depositBtn" onclick="deposit();">充值</button>
                         </div>
                     </div>
                 </div>
@@ -261,7 +261,7 @@
             <?php include('php/footer.php'); ?>
 
             <!-- Bootstrap core JavaScript
-                    ================================================== -->
+            ================================================== -->
             <!-- Placed at the end of the document so the pages load faster -->
             <script src="bootstrap-3.0.0/assets/js/jquery.js"></script>
             <script src="bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>

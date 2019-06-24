@@ -16,8 +16,12 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE){
         $userBalance += $number;
         $sql = "UPDATE users SET balance='" . $userBalance . "' WHERE userID='" . $userID . "'";
         if($connect->query($sql)){
-            echo "Recharge successfully!";
+            echo "充值成功！";
+        }else{
+            echo "充值失败！";
         }
+    }else{
+        echo "充值失败！";
     }
     $connect->close();
 }
