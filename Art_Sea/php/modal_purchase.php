@@ -4,7 +4,7 @@
             <form autocomplete="off" id="formOfSignIn">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title">下单</h3>
+                    <h3 class="modal-title">Purchase</h3>
                 </div>
                 <div class="modal-body">
                 
@@ -24,12 +24,12 @@
                         }else{
                             $row = $result->fetch_assoc();
                             $price[$i]= $row['price'];
-                            $str .= '<li class="list-group-item">商品：' . $row['title'] . '&nbsp;&nbsp;&nbsp;';
-                            $str .= '价格：$ ' . $row['price'] . '</li>';
+                            $str .= '<li class="list-group-item">Artwork:' . $row['title'] . '&nbsp;&nbsp;&nbsp;';
+                            $str .= 'Price:$ ' . $row['price'] . '</li>';
                         }
                     }
                     $sum = array_sum($price);
-                    $str .= '<li class="list-group-item">总计：$ ' . $sum . '</li>';
+                    $str .= '<li class="list-group-item">Total:$ ' . $sum . '</li>';
                     $str .= '</ul>';
                     echo $str;
                     $connect->close();

@@ -239,11 +239,11 @@ function getShoppingCart($artworkID){
             $sql = "SELECT artworkID,title,artist,imageFileName,price,description FROM artworks WHERE artworkID='" . $artworkID[$i] . "'";
             $result = $connect->query($sql);
             if ($result->num_rows <= 0){
-                showShoppingCart(NULL);
+                showShoppingCart(NULL,$artworkID[$i]);
             }else{
                 $row = $result->fetch_assoc();
                 $sum += $row['price'];
-                showShoppingCart($row);
+                showShoppingCart($row,$artworkID[$i]);
             }
         }
         showPurchaseBtn($sum,$artworkID);
@@ -251,9 +251,12 @@ function getShoppingCart($artworkID){
     }
 }
 /* 展示购物车内商品 */
-function showShoppingCart($row){
+function showShoppingCart($row,$artworkID){
     if($row === NULL){
-        echo '<div class="jumbotron"><div class="container"><p class="text-center">(⊙ˍ⊙)? This artwork has jumped to another world line</p></div></div><hr class="featurette-divider">';
+        $str = '<div class="jumbotron"><div class="container"><p class="text-center">(⊙ˍ⊙)? This artwork has jumped to another world line';
+        $str .= '&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" onclick="deleteArtwork(' . $artworkID . ');"><span class="glyphicon glyphicon-trash"></span> Delete</button>';
+        $str .= '</p></div></div><hr class="featurette-divider">';
+        echo $str;
     }else{
         $rowDes = substr($row['description'], 0, 125);
         $rowDes = preg_replace('/<em>/i','',$rowDes);
@@ -267,7 +270,7 @@ function showShoppingCart($row){
         $str .= '<div class="panel-body">' . $rowDes . '...</div></div></div>';
         $str .= '<div class="col-md-3 text-center"><div class="btn-group" role="group">';
         $str .= '<button class="btn btn-default" onclick="window.open(\'详情.php?workID=' . $row['artworkID'] . '\',\'_self\');"><a><span class="glyphicon glyphicon-chevron-right"></span> Details</a></button>';
-        $str .= '<button type="button" class="btn btn-danger" onclick="deleteArtwork(' . $row['artworkID'] . ');"><span class="glyphicon glyphicon-trash"></span> Delete</button>';
+        $str .= '<button type="button" class="btn btn-danger" onclick="deleteArtwork(' . $artworkID . ');"><span class="glyphicon glyphicon-trash"></span> Delete</button>';
         $str .= '</div></div></div><hr class="featurette-divider">';
         echo $str;
     }

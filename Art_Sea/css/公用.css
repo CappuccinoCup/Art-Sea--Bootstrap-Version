@@ -51,7 +51,7 @@ nav .self-linkGroup .currentPage{
     margin: 10px auto 0 auto;
 }
 
-#signIn p,#signUp p,#deposit p{
+#signIn p,#signUp p,#deposit p,#modifyInfo p{
     color:red;
 }
 
