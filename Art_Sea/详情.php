@@ -77,7 +77,7 @@
                                         <button type="button" class="btn btn-default" onclick="addToShoppingCart(<?php echo $row['artworkID']; ?>);">
                                             <a><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
                                         </button>
-                                        <p>&nbsp;</p>
+                                        <p class="sold"><?php if(($row['orderID']) !== null){echo "This artwork has been sold.";} ?>&nbsp;</p>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">Product Details</div>
                                             <table class="table">
@@ -122,7 +122,7 @@
                                         <button type="button" class="btn btn-default" onclick="addToShoppingCart(<?php echo $row['artworkID']; ?>);">
                                             <a><span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
                                         </button>                                       
-                                        <p>&nbsp;</p>
+                                        <p class="sold"><?php if(($row['orderID']) !== null){echo "This artwork has been sold.";} ?>&nbsp;</p>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">Product Details</div>
                                             <table class="table">

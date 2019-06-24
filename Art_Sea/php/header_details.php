@@ -41,7 +41,7 @@
                     </form>
                 </div>
             </div>
-            <div id="footPath"><span class="glyphicon glyphicon-time"></span> Your FootPrint:
+            <div id="footPath"><span class="glyphicon glyphicon-time"></span> Your Footprint:
             <?php showFootprint(); ?>
             </div>
         </div>
