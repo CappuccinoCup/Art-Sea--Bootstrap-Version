@@ -95,7 +95,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>View:</th>
-                                                    <td><?php echo $row['view']; ?></td>
+                                                    <td><?php $view = $row['view'] + 1; echo $view; ?></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -140,7 +140,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>View:</th>
-                                                    <td><?php echo $row['view']; ?></td>
+                                                    <td><?php $view = $row['view'] + 1; echo $view; ?></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -178,7 +178,6 @@
 
             <?php include('php/footer.php'); ?>
             <?php 
-            $view = $row['view'] + 1;
             $artworkID = $row['artworkID'];
             $sql = "UPDATE artworks SET view='" . $view . "' WHERE artworkID='" . $artworkID . "'";
             $connect->query($sql);

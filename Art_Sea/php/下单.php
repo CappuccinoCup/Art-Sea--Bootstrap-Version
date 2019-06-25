@@ -54,7 +54,10 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] === TRUE) {
                         $ownerBalance = $row['balance'];
                         $sql = "UPDATE users SET balance='" . ($ownerBalance + $available[$i][0]) . "' WHERE userID='" . $available[$i][2] . "'";
                         if ($connect->query($sql)) {
-                            $str .= $available[$i][1] . "  ";
+                            $sql = "DELETE FROM carts WHERE userID='" . $userID . "' AND artworkID='" . $artworkID[$i] . "'";
+                            if($connect->query($sql)){
+                                $str .= $available[$i][1] . "  ";
+                            }
                         }
                     }
                 }

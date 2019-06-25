@@ -309,7 +309,7 @@ function littleShoppingCart($artworkID){
 function showMyArtworks(){
     $userID = $_SESSION['userID'];
     $connect = connectDB();
-    $sql = "SELECT title,artworkID,timeReleased FROM artworks WHERE ownerID='" . $userID . "' AND orderID is NULL";
+    $sql = "SELECT title,artworkID,timeReleased FROM artworks WHERE ownerID='" . $userID . "' AND orderID is NULL ORDER BY timeReleased DESC";
     $result = $connect->query($sql);
     if($result->num_rows <= 0){
         echo '<tr><td colspan="4"><p><br><br></p></td></tr>';
@@ -333,7 +333,7 @@ function showMyArtworks(){
 function showOrders(){
     $userID = $_SESSION['userID'];
     $connect = connectDB();
-    $sql = "SELECT * FROM orders WHERE ownerID='" . $userID . "'";
+    $sql = "SELECT * FROM orders WHERE ownerID='" . $userID . "' ORDER BY timeCreated DESC";
     $result = $connect->query($sql);
     if($result->num_rows <= 0){
         echo '<tr><td colspan="4"><p><br><br></p></td></tr>';
@@ -403,6 +403,7 @@ function showSells(){
                 }
             }
         }
+        array_multisort(array_column($sells,'timeCreated'),SORT_DESC,$sells);
         $str = '';
         for($i = 0;$i < count($sells);$i++){
             if($sells[$i]['buyerID'] !== "DISAPPEARED" && $sells[$i]['buyerName'] !== "DISAPPEARED"){
