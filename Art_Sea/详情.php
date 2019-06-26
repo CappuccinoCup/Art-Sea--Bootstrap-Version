@@ -16,6 +16,7 @@
     <script>
         window.onload = function() {
             setSign();
+            background();
         }
     </script>
 </head>

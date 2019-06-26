@@ -13,6 +13,11 @@
 
     <script src="javascript/公用.js"></script>
     <script src="javascript/个人中心.js"></script>
+    <script>
+        window.onload = function() {
+            background();
+        }
+    </script>
 </head>
 
 <body>

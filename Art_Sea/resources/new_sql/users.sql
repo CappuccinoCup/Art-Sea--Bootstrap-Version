@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2019-06-25 13:50:02
+-- 生成日期： 2019-06-26 04:59:42
 -- 服务器版本： 10.1.38-MariaDB
 -- PHP 版本： 7.3.3
 
@@ -50,7 +50,8 @@ INSERT INTO `users` (`userID`, `name`, `email`, `password`, `tel`, `address`, `b
 (9, 'Laffey', 'Laffey@cc.com', 'Laffey2121', '120', 'secret', 0),
 (11, 'Laffey\'s friend', 'z23@cc.com', 'z23z23z23', '110', 'secret', 0),
 (13, 'Laffey\'s another friend', 'javelin@cc.com', 'javelin2121', '119', 'secret', 0),
-(15, 'Ayanami', 'Ayanami@cc.com', 'Ayanami2121', '19921270717', 'secret', 0);
+(15, 'Ayanami', 'Ayanami@cc.com', 'Ayanami2121', '19921270717', 'secret', 0),
+(16, '', '', '', '', '', 0);
 
 --
 -- 转储表的索引
@@ -71,7 +72,7 @@ ALTER TABLE `users`
 -- 使用表AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

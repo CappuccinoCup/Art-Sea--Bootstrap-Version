@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2019-06-25 13:48:51
+-- 生成日期： 2019-06-26 04:58:55
 -- 服务器版本： 10.1.38-MariaDB
 -- PHP 版本： 7.3.3
 
@@ -254,7 +254,7 @@ INSERT INTO `artworks` (`artworkID`, `artist`, `imageFileName`, `title`, `descri
 (453, 'El Greco', '453.jpg', 'View of Toledo', '<em>View of Toledo</em>, is one of the two surviving landscapes painted by El Greco. The other, called View and Plan of Toledo lies at Museo Del Greco, Toledo, Spain. Along with Vincent van Gogh\'s The Starry Night, some landscapes by William Turner, and some works by Monet, it is among the best known depictions of the sky in Western art, and features sharp color contrast between the sky and the hills below. Painted in a Mannerist (or Baroque) style, the work takes liberties with the actual layout of Toledo (some buildings are depicted in different positions than their actual location, but truthfully depicts on the side the Castle of San Servando).', 1600, 'Mannerism', 121, 108, 700, 208, 1, NULL, '2016-04-21 13:53:30'),
 (457, '@CappuccinoCup', 'Aurora-Berry Afternoon Tea.jpg', 'Aurora\'s Afternoon Tea', 'Warm afternoon, bright sunshine, sweet cherries, and a beautiful smile...Commander, would you like to join me for a cup of afternoon tea?', 2019, 'Azur Lane', 4944, 6658, 7200, 18, 2, 7, '2019-06-23 18:34:06'),
 (458, '@CappuccinoCup', 'Chocolate for valentine\'s day.png', 'Chocolate for valentine\'s day', 'Emmm...Z23, adding some red wine to the chocolate will make it more delicious, right?This is my precious 82‘s laffey...The commander was blessed to enjoy it.', 2019, 'Azur Lane', 576, 1024, 7200, 12, 2, 9, '2019-06-23 18:52:22'),
-(460, '@CappuccinoCup', '12.png', 'Kafuu Chino\'s Cup', 'Welcome to Rabbit House! Co... Cocoa? Is... is the order a cup of Kafuu Chino?', 2019, 'cute', 1502, 1160, 20000, 18, 2, NULL, '2019-06-24 02:50:46'),
+(460, '@CappuccinoCup', '12.png', 'Kafuu Chino\'s Cup', 'Welcome to Rabbit House! Co... Cocoa? Is... is the order a cup of Kafuu Chino?', 2019, 'cute', 1502, 1160, 20000, 24, 2, NULL, '2019-06-24 02:50:46'),
 (461, 'Tachibana Kanade', '05.jpg', 'Angel Playing the Piano', 'From the high glass windows of the concert hall came a piece of beautiful piano music.In the noble and empty hall, under the brilliant crystal lamp, there is a solemn grand piano, and an angel playing the piano.\"HMM...Why are the wings shedding again?\"The angel looks worried.Perhaps she don\'t know how blissful the worry is...', 2019, 'cute', 1000, 1599, 20000, 13, 7, 11, '2019-06-25 04:24:51');
 
 --

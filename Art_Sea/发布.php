@@ -16,6 +16,7 @@
     <script>
         window.onload = function() {
             setRelease();
+            background();
         }
     </script>
 </head>

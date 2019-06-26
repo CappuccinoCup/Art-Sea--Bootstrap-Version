@@ -17,6 +17,7 @@
         window.onload = function() {
             setImageChange();
             setSign();
+            background();
         }
     </script>
 </head>
